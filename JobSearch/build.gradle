@@ -1,0 +1,36 @@
+buildscript {
+    repositories {
+        maven { url "https://repo.spring.io/libs-milestone" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'jobsearch'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+    maven { url "https://repo.spring.io/libs-milestone" }
+}
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")    
+    compile("org.springframework.social:spring-social-linkedin")
+    compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
