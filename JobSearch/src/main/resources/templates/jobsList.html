@@ -1,0 +1,17 @@
+<html>
+<head>
+    <title>Hello LinkedIn</title>
+</head>
+<body>
+<h3>Hello, <span th:text="${linkedInProfile.firstName + ' ' + linkedInProfile.lastName}">Some User</span>!</h3>
+
+<h4>These are your connections:</h4>
+
+<ul>
+    <li th:each="JobSearch:${JobSearch}" th:text="${JobSearch.company:(name) + ' ' + JobSearch.position:(title)}">Connection</li>
+
+</ul>
+
+
+</body>
+</html>

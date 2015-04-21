@@ -1,0 +1,15 @@
+<html>
+<head>
+    <title>Hello LinkedIn</title>
+</head>
+<body>
+<h3>Hello, <span th:text="${linkedInProfile.firstName + ' ' + linkedInProfile.lastName}">Some User</span>!</h3>
+
+
+
+<ul>
+    <li th:each="company:${company}" th:text="${company.name +' ' + company.id } ">Companies</li>
+</ul>
+
+</body>
+</html>

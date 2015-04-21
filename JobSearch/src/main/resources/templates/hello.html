@@ -3,12 +3,32 @@
 		<title>Hello LinkedIn</title>
 	</head>
 	<body>
-		<h3>Hello, <span th:text="${linkedInProfile.firstName + ' ' + linkedInProfile.lastName}">Some User</span>!</h3>
-		
-		<h4>These are your connections:</h4>
-		
-		<ul>
-			<li th:each="connection:${connections}" th:text="${connection.firstName + ' ' + connection.lastName}">Connection</li>
-		</ul>
+	<h3>Hello, <span th:text="${linkedInProfile.firstName + ' ' + linkedInProfile.lastName}">Some User</span>!</h3>
+	<table align="center">
+		<tr>
+			<td>
+
+				<h4>These are your connections:</h4>
+
+				<ul>
+					<li th:each="connection:${connections}" th:text="${connection.firstName + ' ' + connection.lastName}">Connection</li>
+				</ul>
+
+			</td>
+			<td>
+				<h4>These are your Skills :</h4>
+				<ul>
+				<li th:each="skill:${Skills}" th:text="${skill}">Skills</li>
+				</ul>
+
+			</td>
+
+		</tr>
+
+
+
+
+	</table>
+
 	</body>
 </html>
