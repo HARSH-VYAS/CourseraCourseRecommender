@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Courses </title>
+</head>
+<body>
+
+<table>
+    <tr>
+        <td>
+            <h4>These are your courses Provided by Coursera</h4>
+            <li th:each="course:${courses}" th:text="${ course.shortName +'- '+ course.name}"> Courses </li>
+        </td>
+
+    </tr>
+</table>
+
+
+</body>
+</html>
