@@ -1,9 +1,12 @@
 <html>
 	<head>
 		<title>Hello LinkedIn</title>
+
 	</head>
-	<body>
-	<h3>Hello, <span th:text="${linkedInProfile.firstName + ' ' + linkedInProfile.lastName}">Some User</span>!</h3>
+	<body style="background-color: #cccccc;)">
+
+
+	<h3>Welcome, <span th:text="${linkedInProfile.firstName + ' ' + linkedInProfile.lastName}" >Some User</span>!</h3>
 	<table align="center">
 		<tr>
 			<td>
@@ -11,7 +14,7 @@
 				<h4>These are your connections:</h4>
 
 				<ul>
-					<li th:each="connection:${connections}" th:text="${connection.firstName + ' ' + connection.lastName}">Connection</li>
+					<li th:each="con:${connections}" th:text="${con.firstName + ' ' + con.lastName}">Connection</li>
 				</ul>
 
 			</td>
@@ -24,8 +27,6 @@
 			</td>
 
 		</tr>
-
-
 
 
 	</table>

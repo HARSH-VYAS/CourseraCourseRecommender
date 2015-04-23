@@ -1,10 +1,126 @@
 <html>
 	<head>
 		<title>Hello LinkedIn</title>
+
+
+
+		<style media="screen" type="text/css">
+			html {
+				min-height:100%;
+				overflow-x:hidden;
+				overflow-y:scroll;
+				position:relative;
+				width:100%;
+			}
+			body {
+				background-color:#dadada;
+				color:#FFF;
+				font-weight:100;
+				margin:0;
+				min-height:100%;
+				width:100%;
+			}
+			a {
+				text-decoration:none;
+			}
+			a img {
+				border:none;
+			}
+			h1 {
+				font-size:3.5em;
+				font-weight:100;
+			}
+			p {
+				font-size:1.5em;
+			}
+
+			.wrap {
+				-moz-box-sizing:border-box;
+				-webkit-box-sizing:border-box;
+				box-sizing:border-box;
+				margin:0 auto;
+				max-width:1420px;
+				overflow:hidden;
+				padding:0 50px;
+				position:relative;
+				width:100%;
+			}
+			.wrap:before {
+				content:'';
+				display:inline-block;
+				height:100%;
+				margin-right:-0.25em;
+				vertical-align:middle;
+			}
+
+			/* header section */
+			header {
+				height:110px;
+			}
+			header .wrap {
+				height:100%;
+			}
+			header .logo {
+				margin-top:1px;
+			}
+			header nav {
+				float:right;
+				margin-top:17px;
+			}
+			header nav ul {
+				margin:1em 0;
+				padding:0;
+			}
+			header nav ul li {
+				display:block;
+				float:left;
+				margin-right:20px;
+			}
+			header nav ul li a {
+				border-radius:24px;
+				color:#000000;
+				font-size:1.4em;
+				font-weight:400;
+				padding:10px 27px;
+				text-decoration:none;
+			}
+			header nav ul li a.active {
+				background-color:#000099;
+				color:#fff;
+			}
+			header nav ul li a.active:hover {
+				background-color:#000000;
+				color:#fff;
+			}
+			header nav ul li a:hover,header nav ul li a.activeSmall {
+				color:#000099;
+			}
+		</style>
+
 	</head>
 	<body>
-		<h3>Connected to LinkedIn</h3>
-		
+		<header>
+			<div class="wrap">
+				<!-- logo -->
+
+				<!--<img src="~\linkedin_logo.png" width="200" height="100" alt="LinkedIn Profile Pic"/>-->
+				<!-- navigation menu -->
+				<nav>
+					<ul>
+<!-- ng-class="{activeSmall:part == 'jobs'}"-->
+						<li><a id="jobsBtn" class="active" target="lower"  href="/jobsList" > Job Postings </a></li>
+						<li><a id="skillsBtn" class="active" target="lower" href="/skillMatch" ng-class="{activeSmall:part == 'skills'}"> Match Skills </a></li>
+						<li ><a id="courseBtn" class="active" target="lower" href="/courses" ng-class="{activeSmall:part == 'courses'}"> Coursera Courses </a></li>
+						<li style="margin-right:20px"><a id="companyBtn" class="active" target="lower" href="/jobs" ng-class="{activeSmall:part == 'companies'}"> Show Companies </a></li>
+
+						<li style="margin-right:0px"><a id="connectionBtn" class="active" href="/" ng-click="showForm()" target="lower"> Get Connections </a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+
+
+<!--
 		<p>
 			You are now connected to your LinkedIn account.
 			<br/>
@@ -16,8 +132,15 @@
 			<br/>
 			Click<a href="/courses">here</a>to find all courses on the coursera here.
 			<br/>
-			Click<a href="/skillMatch">here</a>to find all courses related to your Skills on LinkedIn.
+			Click<a href="/skillMatch">here</a>to find all courses related to your Skills on LinkedIn.*/
 
 		</p>
+
+		-->
+<!--		<iframe  name = "upper" width="1500" height="50" allowtransparency="true"></iframe>-->
+	<iframe  name = "lower" width="1500" height="480" allowtransparency="true"></iframe>
+	<!--<p><a href="hello.html" ></a></p>-->
+
+
 	</body>
 </html>

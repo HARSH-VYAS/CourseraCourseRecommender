@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
@@ -50,8 +51,9 @@ public class LinkedInController {
         return "hello";
     }
 
+
     @RequestMapping(value = "/courses",method=RequestMethod.GET)
-    public String courses(Model model) {
+    public String courses(Model model) throws RestClientException {
         if (connectionRepository.findPrimaryConnection(LinkedIn.class) == null) {
             return "redirect:/connect/linkedin";
         }
@@ -128,5 +130,6 @@ public class LinkedInController {
 
         return "jobsList";
     }
+
 
 }
