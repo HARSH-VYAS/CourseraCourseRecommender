@@ -7,7 +7,7 @@
 
 
 	<h3>Welcome, <span th:text="${linkedInProfile.firstName + ' ' + linkedInProfile.lastName}" >Some User</span>!</h3>
-	<table>
+	<table align="center">
 		<tr>
 			<td>
 
@@ -15,6 +15,13 @@
 
 				<ul>
 					<li th:each="con:${connections}" th:text="${con.firstName + ' ' + con.lastName}">Connection</li>
+				</ul>
+
+			</td>
+			<td>
+				<h4>These are your Skills :</h4>
+				<ul>
+				<li th:each="skill:${Skills}" th:text="${skill}">Skills</li>
 				</ul>
 
 			</td>
