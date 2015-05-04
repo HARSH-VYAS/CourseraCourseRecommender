@@ -1,5 +1,6 @@
 package edu.sjsu;
 
+import java.lang.Exception;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -84,6 +85,7 @@ public class LinkedInController {
 
             for(int j=0 ;j<skills.size();j++) {
                 if (elements.get(i).getShortName().equalsIgnoreCase(skills.get(j))) {
+
 
                     model.addAttribute("skill", skills.get(j));
                     model.addAttribute("course", elements.get(i).getShortName());
