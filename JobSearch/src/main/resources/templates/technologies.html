@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Technologies </title>
+</head>
+<body>
+
+<table>
+    <tr>
+        <td>
+            <h4>These are the most popular technologies</h4>
+            <li th:each="technology:${technologies}" th:text="${ technology.name + ' x ' + technology.count }"> Technologies </li>
+        </td>
+
+    </tr>
+</table>
+
+
+</body>
+</html>

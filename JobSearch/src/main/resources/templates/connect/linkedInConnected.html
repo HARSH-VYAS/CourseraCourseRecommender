@@ -1,9 +1,18 @@
-<html>
+<html lang="en" ng-app="phonecatApp">
 	<head>
-		<title>Hello LinkedIn</title>
-
-
-
+		<title>Linked-Era</title>
+		
+		<script src="/vendor/jquery.js"></script>
+	  	<script src="/vendor/angular.js"></script>
+	  	<script src="/vendor/angular-animate.js"></script>
+	  	<script src="/vendor/angular-route.js"></script>
+	  	<script src="/vendor/angular-resource.js"></script>
+	  	<script src="/js/app.js"></script>
+	  	<script src="/js/animations.js"></script>
+	  	<script src="/js/controllers.js"></script>
+	  	<script src="/js/filters.js"></script>
+	  	<script src="/js/services.js"></script>
+		
 		<style media="screen" type="text/css">
 			html {
 				min-height:100%;
@@ -98,17 +107,12 @@
 		</style>
 
 	</head>
-	<body>
+	<body ng-controller="TechCtrl">
 		<header>
 			<div class="wrap">
-				<!-- logo -->
-
-				<!--<img src="~\linkedin_logo.png" width="200" height="100" alt="LinkedIn Profile Pic"/>-->
-				<!-- navigation menu -->
 				<nav>
 					<ul>
-<!-- ng-class="{activeSmall:part == 'jobs'}"-->
-						<li><a id="jobsBtn" class="active" target="lower"  href="/jobsList" > Job Postings </a></li>
+						<li><a id="technologyBtn" class="active" target="lower" href="" ng-click="onTechBtnClick()" ng-class="{activeSmall:part == 'technologies'}"> Popular Technologies </a></li>
 						<li><a id="skillsBtn" class="active" target="lower" href="/skillMatch" ng-class="{activeSmall:part == 'skills'}"> Match Skills </a></li>
 						<li ><a id="courseBtn" class="active" target="lower" href="/courses" ng-class="{activeSmall:part == 'courses'}"> Coursera Courses </a></li>
 						<li style="margin-right:20px"><a id="companyBtn" class="active" target="lower" href="/jobs" ng-class="{activeSmall:part == 'companies'}"> Show Companies </a></li>
@@ -118,29 +122,16 @@
 				</nav>
 			</div>
 		</header>
-
-
-<!--
-		<p>
-			You are now connected to your LinkedIn account.
-			<br/>
-			Click <a href="/">here</a> to see your LinkedIn connections and your Skills.
-			<br/>
-			Click<a href="/jobs">here</a>to find companies you are following.
-			<br/>
-			Click<a href="/jobsList">here</a>to find all th Job Postings.
-			<br/>
-			Click<a href="/courses">here</a>to find all courses on the coursera here.
-			<br/>
-			Click<a href="/skillMatch">here</a>to find all courses related to your Skills on LinkedIn.*/
-
-		</p>
-
-		-->
-<!--		<iframe  name = "upper" width="1500" height="50" allowtransparency="true"></iframe>-->
-	<iframe  name = "lower" width="1500" height="480" allowtransparency="true"></iframe>
-	<!--<p><a href="hello.html" ></a></p>-->
-
+		
+		<iframe name="lower" width="1500" height="480" allowtransparency="true"></iframe>
+		<div style="color:black;display:none;">
+			<p>These are the popular technologies:</p>
+			<ul>
+		        <li ng-repeat="technology in technologies">		          
+		          <p>{{technology.name + ' (' + technology.count + ')'}}</p>
+		        </li>
+			</ul>		
+		</div>
 
 	</body>
 </html>

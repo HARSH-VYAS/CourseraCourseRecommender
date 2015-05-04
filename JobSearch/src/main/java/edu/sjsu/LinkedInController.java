@@ -10,6 +10,7 @@ import org.springframework.social.linkedin.api.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +25,7 @@ import java.util.ArrayList;
 public class LinkedInController {
 
     @Autowired
-    courseRepo cr;
+    CourseRepository courseRepository;
 
     private LinkedIn linkedIn;
 
@@ -50,7 +51,17 @@ public class LinkedInController {
 
         return "hello";
     }
-
+    
+    @RequestMapping(value = "/technologies", method = RequestMethod.POST)
+	public String technologies(@RequestBody Technologies technologies, Model model) throws RestClientException {
+		if (connectionRepository.findPrimaryConnection(LinkedIn.class) == null) {
+			return "redirect:/connect/linkedin";
+		}		
+		
+		ArrayList<Technology> items = technologies.getItems();
+		model.addAttribute("technologies", items);		
+		return "technologies";
+	}
 
     @RequestMapping(value = "/courses",method=RequestMethod.GET)
     public String courses(Model model) throws RestClientException {
@@ -64,7 +75,7 @@ public class LinkedInController {
 
         ArrayList<Course> elements = courses.getElements();
 
-        cr.save(elements);
+        courseRepository.save(elements);
         model.addAttribute("courses", elements);
         return "courses";
     }
@@ -75,7 +86,7 @@ public class LinkedInController {
             return "redirect:/connect/linkedin";
         }
 
-        List<Course> elements = cr.findAll();
+        List<Course> elements = courseRepository.findAll();
         List<String> skills = linkedIn.profileOperations().getUserProfileFull().getSkills();
 
         ///cloudcomputing- Cloud Computing Concepts
