@@ -26,6 +26,9 @@ public class LinkedInController {
 
     @Autowired
     CourseRepository courseRepository;
+    
+    @Autowired
+    TechnologyRepository technologyRepository;
 
     private LinkedIn linkedIn;
 
@@ -54,12 +57,13 @@ public class LinkedInController {
     
     @RequestMapping(value = "/technologies", method = RequestMethod.POST)
 	public String technologies(@RequestBody Technologies technologies, Model model) throws RestClientException {
-		if (connectionRepository.findPrimaryConnection(LinkedIn.class) == null) {
-			return "redirect:/connect/linkedin";
-		}		
-		
+    	if (connectionRepository.findPrimaryConnection(LinkedIn.class) == null) {
+            return "redirect:/connect/linkedin";
+        }
+    	
 		ArrayList<Technology> items = technologies.getItems();
-		model.addAttribute("technologies", items);		
+		technologyRepository.save(items);
+		model.addAttribute("technologies", items);
 		return "technologies";
 	}
 
@@ -71,7 +75,6 @@ public class LinkedInController {
 
         RestTemplate restTemplate = new RestTemplate();
         Courses courses = restTemplate.getForObject("https://api.coursera.org/api/catalog.v1/courses", Courses.class);
-        //System.out.println("Elements are" + courses.getElements() + "\n\n\n\n\n");
 
         ArrayList<Course> elements = courses.getElements();
 
