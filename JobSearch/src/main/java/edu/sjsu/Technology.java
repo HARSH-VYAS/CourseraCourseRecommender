@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Technology {
 	@Id
 	private String id;
+
 	private boolean has_synonyms;
 	private boolean is_moderator_only;
 	private boolean is_required;

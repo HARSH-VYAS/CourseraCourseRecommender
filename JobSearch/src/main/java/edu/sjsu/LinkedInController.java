@@ -89,33 +89,28 @@ public class LinkedInController {
             return "redirect:/connect/linkedin";
         }
 
-        List<Course> elements = courseRepository.findAll();
-        List<String> skills = linkedIn.profileOperations().getUserProfileFull().getSkills();
+        List<Technology> elements = technologyRepository.findAll();
+        List<Course> courses = courseRepository.findAll();
+        ArrayList<String>  course =  new ArrayList<String>();
+        ArrayList<String>  technology =  new ArrayList<String>();
 
-        ///cloudcomputing- Cloud Computing Concepts
-        for(int i=0 ;i<elements.size();i++)
-        {
+        for (int i=0 ;i<elements.size();i++ ) {
+            for (int j = 0; j < courses.size(); j++) {
 
-            for(int j=0 ;j<skills.size();j++) {
-                if (elements.get(i).getShortName().equalsIgnoreCase(skills.get(j))) {
+                String courseName = courses.get(j).getName().toLowerCase();
+                if (courseName.substring(0,courseName.length()).contains(elements.get(i).getName().toLowerCase())){
 
-                    model.addAttribute("skill", skills.get(j));
-                    model.addAttribute("course", elements.get(i).getShortName());
-                    model.addAttribute("name",elements.get(i).getName());
-
+                    if(!course.contains(courseName))
+                       course.add(courseName);
+                    if(!technology.contains(elements.get(i).getName().toLowerCase()))
+                       technology.add(elements.get(i).getName().toLowerCase());
                 }
             }
-
         }
 
-        /*RestTemplate restTemplate = new RestTemplate();
-        Courses courses = restTemplate.getForObject("https://api.coursera.org/api/catalog.v1/courses", Courses.class);
-        ArrayList<Course> elements = courses.getElements();
-
-        cr.save(elements);
-        model.addAttribute("courses", elements);*/
-
-        return "skillMatch";
+        model.addAttribute("courses", course);
+        model.addAttribute("name", technology);
+        return "SuggestedCourses";
     }
 
     @RequestMapping(value = "/jobs",method=RequestMethod.GET)

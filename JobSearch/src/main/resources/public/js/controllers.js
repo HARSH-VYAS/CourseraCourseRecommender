@@ -11,8 +11,22 @@ jobSearchControllers.controller('TechCtrl', ['$scope', '$http', function($scope,
 					$scope.technologies = data.items;
 					$http.post('/technologies', data);
 				});
-		};	
-	}]);
+		};
+
+	$scope.onSugstCrcClick = function () {
+		$http.get('/SuggestedCourses').
+			success(function(data) {
+				$scope.courses = data.getAttribute(courses);
+				$scope.technology=data.getAttribute(name);
+			});
+	};
+
+}
+
+
+
+
+]);
 
 jobSearchControllers.controller('PhoneListCtrl', ['$scope', 'Phone',
 	  function($scope, Phone) {

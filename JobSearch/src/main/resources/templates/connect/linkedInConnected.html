@@ -113,7 +113,7 @@
 				<nav>
 					<ul>
 						<li><a id="technologyBtn" class="active" target="lower" href="" ng-click="onTechBtnClick()" ng-class="{activeSmall:part == 'technologies'}"> Popular Technologies </a></li>
-						<li><a id="skillsBtn" class="active" target="lower" href="/skillMatch" ng-class="{activeSmall:part == 'skills'}"> Match Skills </a></li>
+						<li><a id="skillsBtn" class="active" target="lower" href="/skillMatch" ng-class="{activeSmall:part == 'skills'}"> Suggested Courses </a></li>
 						<li ><a id="courseBtn" class="active" target="lower" href="/courses" ng-class="{activeSmall:part == 'courses'}"> Coursera Courses </a></li>
 						<li style="margin-right:20px"><a id="companyBtn" class="active" target="lower" href="/jobs" ng-class="{activeSmall:part == 'companies'}"> Show Companies </a></li>
 
@@ -123,11 +123,12 @@
 			</div>
 		</header>
 		
-		<iframe style="display:none;" name="lower" width="1500" height="480" allowtransparency="true"></iframe>
+		<iframe  name="lower" width="1500" height="480" allowtransparency="true"></iframe>
 		<div style="color:black;">
 			<p>These are the popular technologies:</p>
 			<ul>
-		        <li ng-repeat="technology in technologies">		          
+		        <li ng-repeat="technology in technologies">
+
 		          <p>{{technology.name + ' (' + technology.count + ')'}}</p>
 		        </li>
 			</ul>		
