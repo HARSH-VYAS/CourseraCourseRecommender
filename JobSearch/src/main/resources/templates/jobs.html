@@ -1,8 +1,73 @@
 <html>
 <head>
     <title>Hello LinkedIn</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"/>
+
+    <!-- Latest compiled and minified JavaScript -->
+
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <style>
+        .margin-bottom-10	{
+            margin-bottom: 10px;
+        }
+        .margin-top-10	{
+            margin-top: 10px;
+        }
+        .margin-right-10 {
+            margin-right: 20px;
+        }
+    </style>
+
 </head>
 <body>
+<nav class="navbar navbar-default">
+    <div class="container">
+
+
+
+
+        <div class="container-fluid">
+            <div class="navbar-header">
+
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+
+                </button>
+                <a id="connectionBtn" class="navbar-brand margin-right-10" href="/" ng-click="showForm()">Get Connections</a>
+                <a id="technologyBtn" class="navbar-brand margin-right-10" href="" ng-click="onTechBtnClick()" >Popular Technologies</a>
+                <a id="skillsBtn" class="navbar-brand margin-right-10" href="/skillMatch"  >Suggested Courses</a>
+                <a id="courseBtn" class="navbar-brand margin-right-10" href="/courses"  >Coursera Courses</a>
+                <a id="companyBtn" class="navbar-brand margin-right-10" href="/jobs"  >Show Companies</a>
+
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search"/>
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</nav>
+
 <h3>Hello, <span th:text="${linkedInProfile.firstName + ' ' + linkedInProfile.lastName}">Some User</span>!</h3>
 
 
@@ -10,6 +75,9 @@
 <ul>
     <li th:each="company:${company}" th:text="${company.name +' ' + company.id } ">Companies</li>
 </ul>
+
+
+
 
 </body>
 </html>

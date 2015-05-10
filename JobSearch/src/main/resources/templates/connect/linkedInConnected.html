@@ -1,6 +1,18 @@
 <html lang="en" ng-app="phonecatApp">
 	<head>
 		<title>Linked-Era</title>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" />
+
+		<!-- Latest compiled and minified JavaScript -->
+
+		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 		
 		<script src="/vendor/jquery.js"></script>
 	  	<script src="/vendor/angular.js"></script>
@@ -12,127 +24,82 @@
 	  	<script src="/js/controllers.js"></script>
 	  	<script src="/js/filters.js"></script>
 	  	<script src="/js/services.js"></script>
-		
-		<style media="screen" type="text/css">
-			html {
-				min-height:100%;
-				overflow-x:hidden;
-				overflow-y:scroll;
-				position:relative;
-				width:100%;
-			}
-			body {
-				background-color:#dadada;
-				color:#FFF;
-				font-weight:100;
-				margin:0;
-				min-height:100%;
-				width:100%;
-			}
-			a {
-				text-decoration:none;
-			}
-			a img {
-				border:none;
-			}
-			h1 {
-				font-size:3.5em;
-				font-weight:100;
-			}
-			p {
-				font-size:1.5em;
-			}
+		<!-- -->
 
-			.wrap {
-				-moz-box-sizing:border-box;
-				-webkit-box-sizing:border-box;
-				box-sizing:border-box;
-				margin:0 auto;
-				max-width:1420px;
-				overflow:hidden;
-				padding:0 50px;
-				position:relative;
-				width:100%;
+		<style>
+			.margin-bottom-10	{
+				margin-bottom: 10px;
 			}
-			.wrap:before {
-				content:'';
-				display:inline-block;
-				height:100%;
-				margin-right:-0.25em;
-				vertical-align:middle;
+			.margin-top-10	{
+				margin-top: 10px;
 			}
-
-			/* header section */
-			header {
-				height:110px;
-			}
-			header .wrap {
-				height:100%;
-			}
-			header .logo {
-				margin-top:1px;
-			}
-			header nav {
-				float:right;
-				margin-top:17px;
-			}
-			header nav ul {
-				margin:1em 0;
-				padding:0;
-			}
-			header nav ul li {
-				display:block;
-				float:left;
-				margin-right:20px;
-			}
-			header nav ul li a {
-				border-radius:24px;
-				color:#000000;
-				font-size:1.4em;
-				font-weight:400;
-				padding:10px 27px;
-				text-decoration:none;
-			}
-			header nav ul li a.active {
-				background-color:#000099;
-				color:#fff;
-			}
-			header nav ul li a.active:hover {
-				background-color:#000000;
-				color:#fff;
-			}
-			header nav ul li a:hover,header nav ul li a.activeSmall {
-				color:#000099;
+			.margin-right-10 {
+				margin-right: 20px;
 			}
 		</style>
-
 	</head>
 	<body ng-controller="TechCtrl">
-		<header>
-			<div class="wrap">
-				<nav>
-					<ul>
-						<li><a id="technologyBtn" class="active" target="lower" href="" ng-click="onTechBtnClick()" ng-class="{activeSmall:part == 'technologies'}"> Popular Technologies </a></li>
-						<li><a id="skillsBtn" class="active" target="lower" href="/skillMatch" ng-class="{activeSmall:part == 'skills'}"> Suggested Courses </a></li>
-						<li ><a id="courseBtn" class="active" target="lower" href="/courses" ng-class="{activeSmall:part == 'courses'}"> Coursera Courses </a></li>
-						<li style="margin-right:20px"><a id="companyBtn" class="active" target="lower" href="/jobs" ng-class="{activeSmall:part == 'companies'}"> Show Companies </a></li>
+	<nav class="navbar navbar-default">
+	<div class="container">
 
-						<li style="margin-right:0px"><a id="connectionBtn" class="active" href="/" ng-click="showForm()" target="lower"> Get Connections </a></li>
-					</ul>
-				</nav>
-			</div>
-		</header>
-		
-		<iframe  name="lower" width="1500" height="480" allowtransparency="true"></iframe>
-		<div style="color:black;">
-			<p>These are the popular technologies:</p>
-			<ul>
-		        <li ng-repeat="technology in technologies">
 
-		          <p>{{technology.name + ' (' + technology.count + ')'}}</p>
-		        </li>
-			</ul>		
+
+
+	<div class="container-fluid">
+		<div class="navbar-header">
+
+<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	<span class="sr-only">Toggle navigation</span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+
+</button>
+			<a id="connectionBtn" class="navbar-brand margin-right-10" href="/" ng-click="showForm()">Get Connections</a>
+			<a id="technologyBtn" class="navbar-brand margin-right-10" href="" ng-click="onTechBtnClick()" >Popular Technologies</a>
+			<a id="skillsBtn" class="navbar-brand margin-right-10" href="/skillMatch"  >Suggested Courses</a>
+			<a id="courseBtn" class="navbar-brand margin-right-10" href="/courses"  >Coursera Courses</a>
+			<a id="companyBtn" class="navbar-brand margin-right-10" href="/jobs"  >Show Companies</a>
+
 		</div>
+
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<!--<ul class="nav navbar-nav">-->
+				<!--<li class="active"><a href</li>-->
+			<!--</ul>-->
+			<form class="navbar-form navbar-left" role="search">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Search"/>
+				</div>
+				<button type="submit" class="btn btn-default">Submit</button>
+			</form>
+		</div>
+		<!--<a id="connectionBtn" class="btn btn-default center-block margin-bottom-10 margin-top-10" href="/" ng-click="showForm()"  role="button">Get Connections</a>-->
+						<!--<a id="technologyBtn" class="btn btn-default center-block margin-bottom-10" href="/technologies" ng-click="onTechBtnClick()" role="button">Popular Technologies</a>-->
+						<!--<a id="skillsBtn" class="btn btn-default center-block margin-bottom-10" href="/skillMatch"  role="button">Suggested Courses</a>-->
+						<!--<a id="courseBtn" class="btn btn-default center-block margin-bottom-10" href="/courses"   role="button">Coursera Courses</a>-->
+						<!--<a id="companyBtn" class="btn btn-default center-block margin-bottom-10" href="/jobs"  role="button">Show Companies</a>-->
+
+
+	</div>
+
+	</div>
+	</nav>
+
+
+	<div style="color:black;">
+		<p>These are the popular technologies:</p>
+
+		<ul>
+			<li ng-repeat="technology in technologies">
+
+				<p>{{technology.name + ' (' + technology.count + ')'}}</p>
+			</li>
+		</ul>
+	</div>
+
+		
+
 
 	</body>
 </html>
