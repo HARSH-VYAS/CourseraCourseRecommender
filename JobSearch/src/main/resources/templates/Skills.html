@@ -25,10 +25,19 @@
         .margin-right-10 {
             margin-right: 20px;
         }
+        .margin-left-10
+        {
+            margin-left: 10px;
+        }
+        body {background-color:white}
+        h3 {color:black}
+        h4 {color:black}
     </style>
 
 </head>
-<body>
+<body
+        style="background-color:white">
+>
 <nav class="navbar navbar-default">
     <div class="container">
 
@@ -67,16 +76,42 @@
 
     </div>
 </nav>
+<table align="center">
+    <tr>
+        <td>
+            <h3
+                    style="color:black">
+                <strong>
+                    Hello, <span th:text="${linkedInProfile.firstName + ' ' + linkedInProfile.lastName}">Some User</span>!
+                    </strong>
+            </h3>
 
-<h3>Hello, <span th:text="${linkedInProfile.firstName + ' ' + linkedInProfile.lastName}">Some User</span>!</h3>
+            <p class="text-capitalize">
+                <em>
+                    <h4
+                            style="color: black">
+                        <strong>
+                            <em>
+                                These are your skills:
+                            </em>
+                        </strong>
+                    </h4>
+                </em>
+            </p>
 
-<h4>These are your Skills:</h4>
 
-<ul>
 
-    <li th:each="Skills:${Skills}" th:text="${Skills}">Skills</li>
+            <ul>
+
+    <li
+            style="color:black"
+            th:each="Skills:${Skills}" th:text="${Skills}">Skills>
+    </li>
 
 </ul>
+    </td>
+    </tr>
+    </table>
 
 
 

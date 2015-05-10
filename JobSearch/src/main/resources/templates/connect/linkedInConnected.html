@@ -27,18 +27,23 @@
 		<!-- -->
 
 		<style>
-			.margin-bottom-10	{
-				margin-bottom: 10px;
-			}
-			.margin-top-10	{
+			.margin-top-10 {
 				margin-top: 10px;
 			}
 			.margin-right-10 {
 				margin-right: 20px;
 			}
+			.margin-bottom-10 {
+				margin-bottom: 10px;
+			}
+			body {background-color:white}
+			h3 {color:black}
+			h4 {color:black}
 		</style>
 	</head>
-	<body ng-controller="TechCtrl">
+	<body
+			style="background-color:white"
+			ng-controller="TechCtrl">
 	<nav class="navbar navbar-default">
 	<div class="container">
 
@@ -81,23 +86,41 @@
 						<!--<a id="companyBtn" class="btn btn-default center-block margin-bottom-10" href="/jobs"  role="button">Show Companies</a>-->
 
 
-	</div>
 
 	</div>
+</div>
+
 	</nav>
+	<table
+			allign="center">
+	<tr>
+		<td>
 
+		<p class="text-capitalize">
 
-	<div style="color:black;">
-		<p>These are the popular technologies:</p>
-
+			<em>
+				<strong>
+					<h3>
+						These are the popular technologies:
+					</h3>
+				</strong>
+			</em>
+		</p>
+</td>
+		</tr>
+			<tr>
+				<td>
 		<ul>
-			<li ng-repeat="technology in technologies">
+			<li
+					style="color: black" ng-repeat="technology in technologies">
 
 				<p>{{technology.name + ' (' + technology.count + ')'}}</p>
 			</li>
 		</ul>
-	</div>
+				</td>
+			</tr>
 
+</table>
 		
 
 

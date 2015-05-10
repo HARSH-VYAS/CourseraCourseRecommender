@@ -26,10 +26,18 @@
         .margin-right-10 {
             margin-right: 20px;
         }
+        .margin-left-10{
+            margin-left: 10px;
+        }
+        body {background-color:white}
+        h3 {color:black}
+        h4 {color:black}
+        h1 {color:black}
     </style>
 
 </head>
-<body>
+<body
+        style="background-color:white">>
 <nav class="navbar navbar-default">
     <div class="container">
 
@@ -72,8 +80,24 @@
 <table>
     <tr>
         <td>
-            <h4>These are the popular technologies.</h4>
-            <li th:each="technology:${technologies}" th:text="${ technology.name + ' (' + technology.count + ')' }"> Technologies </li>
+            <p class="text-capitalize">
+                <em>
+                    <h4
+                            style="color: black">
+
+                        <strong>
+                            <em>
+                                These are the popular technologies.
+                            </em>
+                        </strong>
+                    </h4>
+                </em>
+            </p>
+
+            <li
+                    style="color:black"
+                    th:each="technology:${technologies}" th:text="${ technology.name + ' (' + technology.count + ')' }"> Technologies >
+            </li>
         </td>
 
     </tr>

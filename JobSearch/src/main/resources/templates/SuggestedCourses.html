@@ -27,10 +27,20 @@
         .margin-right-10 {
             margin-right: 20px;
         }
+        .margin-left-10{
+            margin-left: 10px;
+        }
+        body {background-color:white}
+        h3 {color:black}
+        h4 {color:black}
+        h1 {color:black}
+
     </style>
 
 </head>
-<body>
+<body
+        style="background-color:white">
+>
 <nav class="navbar navbar-default">
     <div class="container">
 
@@ -69,20 +79,35 @@
 
     </div>
 </nav>
-<h1>These are the courses related to your skills</h1>
+<p class="text-capitalize">
+    <em>
+        <h1
+                style="color: black">
+            <strong>
+                <em>
+                    These are the courses related to your skills
+                </em>
+            </strong>
+        </h1>
+    </em>
+</p>
 
 <table>
     <tr>
          <td>
              <ul>
-                 <li  th:each="courses:${courses}" th:text="${courses}">Course</li>
+                 <li
+                         style="color:black"
+                         th:each="courses:${courses}" th:text="${courses}">Course</li>
              </ul>
 
          </td>
 
         <td>
             <ul>
-                <li th:each="name:${name}" th:text="${name}">Course Name on Coursera</li>
+                <li
+                        style="color:black"
+                        th:each="name:${name}" th:text="${name}">Course Name on Coursera</li>
             </ul>
 
         </td>

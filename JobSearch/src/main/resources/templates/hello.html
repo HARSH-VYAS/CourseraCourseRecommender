@@ -15,14 +15,28 @@
 
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 		<style>
-
-			.margin-right-10 {
+			.margin-bottom-10	{
+				margin-bottom: 10px;
+			}
+			.margin-top-10	{
+				margin-top: 10px;
+			}
+			.margin-left-10{
+				margin-left: 10px;
+			}
+			.margin-right-10
+			{
 				margin-right: 20px;
 			}
+				body {background-color:white}
+				h3 {color:black}
+				h4 {color:black}
+
 		</style>
 
 	</head>
-	<body>
+	<body
+			style="background-color:white">
 
 	<nav class="navbar navbar-default">
 		<div class="container">
@@ -63,23 +77,48 @@
 		</div>
 	</nav>
 
-
-	<h3>Welcome, <span th:text="${linkedInProfile.firstName + ' ' + linkedInProfile.lastName}" >Some User</span>!</h3>
 	<table align="center">
 		<tr>
 			<td>
+	<h3
+			style="color:black ">
+		<strong>
+			Welcome,<span th:text="${linkedInProfile.firstName + ' ' + linkedInProfile.lastName}" >Some User</span>!
+		</strong>
+	</h3>
 
-				<h4>These are your connections:</h4>
+				<p class="text-capitalize">
+					<em>
+						<h4
+								style="color: black">
+							<strong>
+								<em>
+								These are your connections:
+								</em>
+							</strong>
+						</h4>
+						</em>
+					    </p>
+
 
 				<ul>
-					<li th:each="con:${connections}" th:text="${con.firstName + ' ' + con.lastName}">Connection</li>
+					<li
+							style="color:black"
+							th:each="con:${connections}" th:text="${con.firstName + ' ' + con.lastName}">Connection>
+					</li>
 				</ul>
 
 			</td>
 			<td>
-				<h4>These are your Skills :</h4>
+				<h4
+						style="color:black">
+					  These are your Skills :
+				</h4>
 				<ul>
-				<li th:each="skill:${Skills}" th:text="${skill}">Skills</li>
+				<li
+						style="color:black"
+						th:each="skill:${Skills}" th:text="${skill}">Skills>
+				</li>
 				</ul>
 
 			</td>

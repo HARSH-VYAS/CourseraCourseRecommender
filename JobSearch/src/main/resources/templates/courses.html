@@ -26,10 +26,19 @@
         .margin-right-10 {
             margin-right: 20px;
         }
+        .margin-left-10{
+            margin-left: 10px;
+        }
+        body {background-color:white}
+        h3 {color:black}
+        h4 {color:black}
+
     </style>
 
 </head>
-<body>
+<body
+        style="background-color:white">
+
 <nav class="navbar navbar-default">
     <div class="container">
 
@@ -68,12 +77,31 @@
 
     </div>
 </nav>
-
-<table>
+<table allign="center">
     <tr>
         <td>
-            <h4>These are your courses Provided by Coursera</h4>
-            <li th:each="course:${courses}" th:text="${ course.shortName +'- '+ course.name}"> Courses </li>
+
+
+        <p class="text-capitalize">
+                <em>
+           <h4
+                   style="color: black">
+
+               <strong>
+                   <em>
+                   These are your courses Provided by Coursera:
+                   </em>
+               </strong>
+           </h4>
+                    </em>
+            </p>
+
+        <ul>
+            <li
+                    style="color:black"
+             th:each="course:${courses}" th:text="${ course.shortName +'- '+ course.name}"> Courses>
+            </li>
+            </ul>
         </td>
 
     </tr>

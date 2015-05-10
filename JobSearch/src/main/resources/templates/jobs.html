@@ -16,19 +16,33 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
     <style>
-        .margin-bottom-10	{
+        .margin-left-10
+        {
+            margin-left: 10px;
+        }
+
+        .margin-bottom-10
+        {
             margin-bottom: 10px;
         }
-        .margin-top-10	{
+        .margin-top-10
+        {
             margin-top: 10px;
         }
-        .margin-right-10 {
+        .margin-right-10
+        {
             margin-right: 20px;
         }
+        body {background-color:white}
+        h3 {color:black}
+        h4 {color:black}
+
     </style>
 
 </head>
-<body>
+<body
+        style="background-color:white">
+
 <nav class="navbar navbar-default">
     <div class="container">
 
@@ -67,17 +81,43 @@
 
     </div>
 </nav>
+<table allign="center">
+    <tr>
+        <td>
 
-<h3>Hello, <span th:text="${linkedInProfile.firstName + ' ' + linkedInProfile.lastName}">Some User</span>!</h3>
+
+<h3
+        style="color:black ">
+    <strong>
+        <em>
+        Hello, <span th:text="${linkedInProfile.firstName + ' ' + linkedInProfile.lastName}">Some User</span>!
+        </em>
+        </strong>
+
+</h3>
+<p class="text-capitalize">
+    <em>
+        <h4
+                style="color: black">
+            <strong>
+                <em>
+                    These are your companies:
+                </em>
+            </strong>
+        </h4>
+    </em>
+</p>
 
 
 
 <ul>
-    <li th:each="company:${company}" th:text="${company.name +' ' + company.id } ">Companies</li>
+    <li
+            style="color: black"
+            th:each="company:${company}" th:text="${company.name +' ' + company.id } ">Companies>
+    </li>
 </ul>
-
-
-
-
-</body>
+    </td>
+    </tr>
+    </table>
+ </body>
 </html>
