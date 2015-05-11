@@ -1,10 +1,13 @@
 package edu.sjsu;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.linkedin.api.*;
 import org.springframework.stereotype.Controller;
@@ -83,11 +86,13 @@ public class LinkedInController {
         return "courses";
     }
 
-    @RequestMapping(value = "/skillMatch",method=RequestMethod.GET)
-    public String coursesMatch(Model model) {
-        if (connectionRepository.findPrimaryConnection(LinkedIn.class) == null) {
+    @RequestMapping(value = "/SuggestedCourses",method=RequestMethod.GET)
+    public ResponseEntity coursesMatch(Model model) {
+   /*     if (connectionRepository.findPrimaryConnection(LinkedIn.class) == null) {
             return "redirect:/connect/linkedin";
-        }
+        }*/
+
+        HashMap<String,String> suggestedCourses = new HashMap<String, String>();
 
         List<Technology> elements = technologyRepository.findAll();
         List<Course> courses = courseRepository.findAll();
@@ -98,19 +103,21 @@ public class LinkedInController {
             for (int j = 0; j < courses.size(); j++) {
 
                 String courseName = courses.get(j).getName().toLowerCase();
-                if (courseName.substring(0,courseName.length()).contains(elements.get(i).getName().toLowerCase())){
+                if (courseName.substring(0,courseName.length()).contains(elements.get(i).getName())){
 
                     if(!course.contains(courseName))
-                       course.add(courseName);
-                    if(!technology.contains(elements.get(i).getName().toLowerCase()))
-                       technology.add(elements.get(i).getName().toLowerCase());
+                    {
+                        suggestedCourses.put(elements.get(i).getName().toLowerCase(),courseName);
+                        course.add(courseName);
+                    }
+
                 }
             }
-        }
 
-        model.addAttribute("courses", course);
-        model.addAttribute("name", technology);
-        return "SuggestedCourses";
+
+
+        }
+        return new ResponseEntity(suggestedCourses, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/jobs",method=RequestMethod.GET)
