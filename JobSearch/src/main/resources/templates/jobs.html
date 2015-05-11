@@ -17,12 +17,20 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
     <style>
-        .margin-bottom-10	{
+        .margin-left-10
+        {
+            margin-left: 10px;
+        }
+
+        .margin-bottom-10
+        {
             margin-bottom: 10px;
         }
-        .margin-top-10	{
+        .margin-top-10
+        {
             margin-top: 10px;
         }
+<<<<<<< HEAD
         .margin-right-10 {
             margin-right: 30px;
         }
@@ -37,6 +45,16 @@
         body {background-color:white}
         h3 {color:black}
         h4 {color:black}
+=======
+        .margin-right-10
+        {
+            margin-right: 20px;
+        }
+        body {background-color:white}
+        h3 {color:black}
+        h4 {color:black}
+
+>>>>>>> e657e02d7602a8de5ede8d1646c3ebb6769230cb
     </style>
 
 </head>
@@ -79,13 +97,19 @@
         </div>
 
     </div>
+<<<<<<< HEAD
     </nav>
 
 <table allign="left">
+=======
+</nav>
+<table allign="center">
+>>>>>>> e657e02d7602a8de5ede8d1646c3ebb6769230cb
     <tr>
         <td>
 
 
+<<<<<<< HEAD
             <h3
                     style="color:black ">
                 <strong>
@@ -120,4 +144,40 @@
     </tr>
 </table>
 </body>
+=======
+<h3
+        style="color:black ">
+    <strong>
+        <em>
+        Hello, <span th:text="${linkedInProfile.firstName + ' ' + linkedInProfile.lastName}">Some User</span>!
+        </em>
+        </strong>
+
+</h3>
+<p class="text-capitalize">
+    <em>
+        <h4
+                style="color: black">
+            <strong>
+                <em>
+                    These are your companies:
+                </em>
+            </strong>
+        </h4>
+    </em>
+</p>
+
+
+
+<ul>
+    <li
+            style="color: black"
+            th:each="company:${company}" th:text="${company.name +' ' + company.id } ">Companies>
+    </li>
+</ul>
+    </td>
+    </tr>
+    </table>
+ </body>
+>>>>>>> e657e02d7602a8de5ede8d1646c3ebb6769230cb
 </html>
