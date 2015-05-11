@@ -59,31 +59,28 @@ public class LinkedInController {
     }
     
     @RequestMapping(value = "/technologies", method = RequestMethod.POST)
-	public String technologies(@RequestBody Technologies technologies, Model model) throws RestClientException {
+	public void technologies(@RequestBody Technologies technologies, Model model) throws RestClientException {
     	if (connectionRepository.findPrimaryConnection(LinkedIn.class) == null) {
-            return "redirect:/connect/linkedin";
+           // return "redirect:/connect/linkedin";
         }
     	
 		ArrayList<Technology> items = technologies.getItems();
 		technologyRepository.save(items);
-		model.addAttribute("technologies", items);
-		return "technologies";
+		//model.addAttribute("technologies", items);
+		//return "technologies";
 	}
 
     @RequestMapping(value = "/courses",method=RequestMethod.GET)
-    public String courses(Model model) throws RestClientException {
-        if (connectionRepository.findPrimaryConnection(LinkedIn.class) == null) {
+    public ResponseEntity courses(Model model) throws RestClientException {
+       /* if (connectionRepository.findPrimaryConnection(LinkedIn.class) == null) {
             return "redirect:/connect/linkedin";
-        }
+        }*/
 
         RestTemplate restTemplate = new RestTemplate();
         Courses courses = restTemplate.getForObject("https://api.coursera.org/api/catalog.v1/courses", Courses.class);
-
         ArrayList<Course> elements = courses.getElements();
-
         courseRepository.save(elements);
-        model.addAttribute("courses", elements);
-        return "courses";
+        return new ResponseEntity(elements,HttpStatus.OK);
     }
 
     @RequestMapping(value = "/SuggestedCourses",method=RequestMethod.GET)
