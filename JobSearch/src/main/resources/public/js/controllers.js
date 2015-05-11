@@ -5,7 +5,10 @@
 var jobSearchControllers = angular.module('phonecatControllers', []);
 
 jobSearchControllers.controller('TechCtrl', ['$scope', '$http', function($scope, $http) {
-		$scope.onTechBtnClick = function () {
+
+	$scope.list=[];
+
+	$scope.onTechBtnClick = function () {
 			$http.get('https://api.stackexchange.com/2.2/tags?site=stackoverflow&sort=popular&order=desc').
 				success(function(data) {
 					$scope.technologies = data.items;
@@ -16,8 +19,7 @@ jobSearchControllers.controller('TechCtrl', ['$scope', '$http', function($scope,
 	$scope.onSugstCrcClick = function () {
 		$http.get('/SuggestedCourses').
 			success(function(data) {
-				$scope.courses = data.getAttribute(courses);
-				$scope.technology=data.getAttribute(name);
+				$scope.list.push(data);
 			});
 	};
 

@@ -1,144 +1,4 @@
 <html lang="en" ng-app="phonecatApp">
-<<<<<<< HEAD
-	<head>
-		<title>Linked-Era</title>
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
-
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" />
-
-		<!-- Latest compiled and minified JavaScript -->
-
-		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-		<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-		
-		<script src="/vendor/jquery.js"></script>
-	  	<script src="/vendor/angular.js"></script>
-	  	<script src="/vendor/angular-animate.js"></script>
-	  	<script src="/vendor/angular-route.js"></script>
-	  	<script src="/vendor/angular-resource.js"></script>
-	  	<script src="/js/app.js"></script>
-	  	<script src="/js/animations.js"></script>
-	  	<script src="/js/controllers.js"></script>
-	  	<script src="/js/filters.js"></script>
-	  	<script src="/js/services.js"></script>
-		<!-- -->
-
-		<style>
-			.margin-top-10 {
-				margin-top: 10px;
-			}
-			.margin-right-10 {
-				margin-right: 20px;
-			}
-			.margin-bottom-10 {
-				margin-bottom: 10px;
-			}
-			body {background-color:white}
-			h3 {color:black}
-			h4 {color:black}
-		</style>
-	</head>
-	<body
-			style="background-color:white"
-			ng-controller="TechCtrl">
-	<nav class="navbar navbar-default">
-	<div class="container">
-
-
-
-
-	<div class="container-fluid">
-		<div class="navbar-header">
-
-<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-	<span class="sr-only">Toggle navigation</span>
-	<span class="icon-bar"></span>
-	<span class="icon-bar"></span>
-	<span class="icon-bar"></span>
-
-</button>
-			<a id="connectionBtn" class="navbar-brand margin-right-10" href="/" ng-click="showForm()">Get Connections</a>
-			<a id="technologyBtn" class="navbar-brand margin-right-10" href="" ng-click="onTechBtnClick()" >Popular Technologies</a>
-			<a id="SuggestedCoursesBtn" class="navbar-brand margin-right-10" ng-click="onSugstCrcClick()" href="">Suggested Courses</a>
-			<a id="courseBtn" class="navbar-brand margin-right-10" href="/courses"  >Coursera Courses</a>
-			<a id="companyBtn" class="navbar-brand margin-right-10" href="/jobs"  >Show Companies</a>
-
-		</div>
-
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<!--<ul class="nav navbar-nav">-->
-				<!--<li class="active"><a href</li>-->
-			<!--</ul>-->
-			<form class="navbar-form navbar-left" role="search">
-				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Search"/>
-				</div>
-				<button type="submit" class="btn btn-default">Submit</button>
-			</form>
-		</div>
-		<!--<a id="connectionBtn" class="btn btn-default center-block margin-bottom-10 margin-top-10" href="/" ng-click="showForm()"  role="button">Get Connections</a>-->
-						<!--<a id="technologyBtn" class="btn btn-default center-block margin-bottom-10" href="/technologies" ng-click="onTechBtnClick()" role="button">Popular Technologies</a>-->
-						<!--<a id="skillsBtn" class="btn btn-default center-block margin-bottom-10" href="/skillMatch"  role="button">Suggested Courses</a>-->
-						<!--<a id="courseBtn" class="btn btn-default center-block margin-bottom-10" href="/courses"   role="button">Coursera Courses</a>-->
-						<!--<a id="companyBtn" class="btn btn-default center-block margin-bottom-10" href="/jobs"  role="button">Show Companies</a>-->
-
-
-
-	</div>
-</div>
-
-	</nav>
-	<table
-			allign="center">
-	<tr>
-		<td>
-
-		<p class="text-capitalize">
-
-			<em>
-				<strong>
-					<h3>
-						These are the popular technologies:
-					</h3>
-				</strong>
-			</em>
-		</p>
-</td>
-		</tr>
-
-		<tr>
-			<td>
-				<ul>
-					<li
-							style="color: black" ng-repeat="course in list ">
-
-						<p>{{course}}</p>
-					</li>
-				</ul>
-			</td>
-		</tr>
-
-
-
-
-
-
-			<tr>
-				<td>
-		<ul>
-			<li
-					style="color: black" ng-repeat="technology in technologies">
-
-				<p>{{technology.name + ' (' + technology.count + ')'}}</p>
-			</li>
-		</ul>
-				</td>
-			</tr>
-=======
 <head>
     <title>Linked-Era</title>
     <!-- Latest compiled and minified CSS -->
@@ -231,7 +91,7 @@
                     style="color: #FFFFFF">Get Connections</h4></a>
             <a id="technologyBtn" class="navbar-brand margin-right-10 color-1" href="" ng-click="onTechBtnClick()"><h4
                     style="color: #FFFFFF">Popular Technologies</h4></a>
-            <a id="skillsBtn" class="navbar-brand margin-right-10 color-1" href="/skillMatch"><h4
+            <a id="SugstBtn" class="navbar-brand margin-right-10 color-1" ng-click="onSugstCrcClick()" href=""><h4
                     style="color: #FFFFFF">Suggested Courses</h4></a>
             <a id="courseBtn" class="navbar-brand margin-right-10 color-1" href="/courses"><h4 style="color: #FFFFFF">
                 Coursera Courses</h4></a>
@@ -284,6 +144,10 @@
             </p>
         </td>
     </tr>
+
+
+
+
     <tr>
         <td>
             <ul>
@@ -294,9 +158,20 @@
                 </li>
             </ul>
         </td>
-    </tr>
->>>>>>> origin/master
 
+        <td>
+            <ul>
+                <li
+                        style="color: black" ng-repeat="course in list">
+
+                    <em>{{course}}</em>
+                </li>
+            </ul>
+        </td>
+
+
+
+    </tr>
 </table>
 
 
