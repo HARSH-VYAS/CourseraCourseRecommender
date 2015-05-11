@@ -22,21 +22,34 @@
             margin-top: 10px;
         }
         .margin-right-10 {
-            margin-right: 20px;
+            margin-right: 30px;
         }
+        .margin-left-10
+        {
+            margin-left: 10px;
+        }
+        .color{
+            background-color: #000000;
+        }
+
+        body {background-color:white}
+        h3 {color:black}
+        h4 {color:black}
+
     </style>
 
 
 </head>
-<body>
+<body
+        style="background-color:white">
 
 <nav class="navbar navbar-default">
-    <div class="container">
+    <!--<div class="container">-->
 
 
 
 
-        <div class="container-fluid">
+        <div class="container-fluid color" >
             <div class="navbar-header">
 
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -46,11 +59,12 @@
                     <span class="icon-bar"></span>
 
                 </button>
-                <a id="connectionBtn" class="navbar-brand margin-right-10" href="/" ng-click="showForm()">Get Connections</a>
-                <a id="technologyBtn" class="navbar-brand margin-right-10" href="" ng-click="onTechBtnClick()" >Popular Technologies</a>
-                <a id="skillsBtn" class="navbar-brand margin-right-10" href="/skillMatch"  >Suggested Courses</a>
-                <a id="courseBtn" class="navbar-brand margin-right-10" href="/courses"  >Coursera Courses</a>
-                <a id="companyBtn" class="navbar-brand margin-right-10" href="/jobs"  >Show Companies</a>
+
+                <a id="connectionBtn" class="navbar-brand margin-right-10 color-1" href="/" ng-click="showForm()"><h4 style="color: #FFFFFF">Get Connections</h4></a>
+                <a id="technologyBtn" class="navbar-brand margin-right-10 color-1" href="" ng-click="onTechBtnClick()" ><h4 style="color: #FFFFFF">Popular Technologies</h4></a>
+                <a id="skillsBtn" class="navbar-brand margin-right-10 color-1" href="/skillMatch"  ><h4 style="color: #FFFFFF">Suggested Courses</h4></a>
+                <a id="courseBtn" class="navbar-brand margin-right-10 color-1" href="/courses"  ><h4 style="color: #FFFFFF">Coursera Courses</h4></a>
+                <a id="companyBtn" class="navbar-brand margin-right-10 color-1" href="/jobs"  ><h4 style="color: #FFFFFF">Show Companies</h4></a>
 
             </div>
 
@@ -66,18 +80,41 @@
 
         </div>
 
-    </div>
+    <!--</div>-->
 </nav>
+<table align="left">
+    <tr>
+        <td>
+            <h3
+                    style="color:black">
+                <strong>
+                    Hello, <span th:text="${linkedInProfile.firstName + ' ' + linkedInProfile.lastName}">Some User</span>!
+                    </strong>
+            </h3>
+            <p class="text-capitalize">
+                <em>
+                    <h4
+                            style="color: black">
+                        <strong>
+                            <em>
+                                These are your connections:
+                            </em>
+                        </strong>
+                    </h4>
+                </em>
+            </p>
 
-<h3>Hello, <span th:text="${linkedInProfile.firstName + ' ' + linkedInProfile.lastName}">Some User</span>!</h3>
-
-<h4>These are your connections:</h4>
 
 <ul>
-    <li th:each="JobSearch:${JobSearch}" th:text="${JobSearch.company:(name) + ' ' + JobSearch.position:(title)}">Connection</li>
+    <li
+            style="color:black"
+            th:each="JobSearch:${JobSearch}" th:text="${JobSearch.company:(name) + ' ' + JobSearch.position:(title)}">Connection>
+    </li>
 
 </ul>
-
+</td>
+    </tr>
+    </table>
 
 </body>
 </html>

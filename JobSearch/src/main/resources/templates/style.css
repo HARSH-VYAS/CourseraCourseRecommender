@@ -90,15 +90,14 @@ header nav ul li a:hover,header nav ul li a.activeSmall {
   color:#000099;
 }
 
-/* footer section 
+footer section
 footer .copyright {
   color:#adadad;
   margin-bottom:50px;
   margin-top:50px;
   text-align:center;
-}*/
+}
 
-/* other objects 
 .projectObj {
   color:#fff;
   display:block;
@@ -139,9 +138,9 @@ footer .copyright {
   right:50px;
   top:80px;
   width:38px;
-}*/
+}
 
-/*.about {
+.about {
   color:#818181;
 }
 .about section {
@@ -263,4 +262,4 @@ footer .copyright {
 .view-leave.view-leave-active {
   left:-20px;
   opacity:0;
-}*/
+}

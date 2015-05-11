@@ -14,23 +14,46 @@
 		<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-		<style>
 
-			.margin-right-10 {
-				margin-right: 20px;
+		<style>
+			.margin-left-10
+			{
+				margin-left: 10px;
 			}
+
+			.margin-bottom-10
+			{
+				margin-bottom: 10px;
+			}
+			.margin-top-10
+			{
+				margin-top: 10px;
+			}
+			.margin-right-10
+			{
+				margin-right: 30px;
+			}
+			.color{
+				background-color: #000000;
+			}
+			body {background-color:white}
+			h3 {color:black}
+			h4 {color:black}
+
 		</style>
 
+
 	</head>
-	<body>
+	<body
+			style="background-color:white">
 
 	<nav class="navbar navbar-default">
-		<div class="container">
+		<!--<div class="container">-->
 
 
 
 
-			<div class="container-fluid">
+		<div class="container-fluid color" >
 				<div class="navbar-header">
 
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -40,11 +63,12 @@
 						<span class="icon-bar"></span>
 
 					</button>
-					<a id="connectionBtn" class="navbar-brand margin-right-10" href="/" ng-click="showForm()">Get Connections</a>
-					<a id="technologyBtn" class="navbar-brand margin-right-10" href="" ng-click="onTechBtnClick()" >Popular Technologies</a>
-					<a id="skillsBtn" class="navbar-brand margin-right-10" href="/skillMatch"  >Suggested Courses</a>
-					<a id="courseBtn" class="navbar-brand margin-right-10" href="/courses"  >Coursera Courses</a>
-					<a id="companyBtn" class="navbar-brand margin-right-10" href="/jobs"  >Show Companies</a>
+
+					<a id="connectionBtn" class="navbar-brand margin-right-10 color-1" href="/" ng-click="showForm()"><h4 style="color: #FFFFFF">Get Connections</h4></a>
+					<a id="technologyBtn" class="navbar-brand margin-right-10 color-1" href="" ng-click="onTechBtnClick()" ><h4 style="color: #FFFFFF">Popular Technologies</h4></a>
+					<a id="skillsBtn" class="navbar-brand margin-right-10 color-1" href="/skillMatch"  ><h4 style="color: #FFFFFF">Suggested Courses</h4></a>
+					<a id="courseBtn" class="navbar-brand margin-right-10 color-1" href="/courses"  ><h4 style="color: #FFFFFF">Coursera Courses</h4></a>
+					<a id="companyBtn" class="navbar-brand margin-right-10 color-1" href="/jobs"  ><h4 style="color: #FFFFFF">Show Companies</h4></a>
 
 				</div>
 
@@ -60,26 +84,51 @@
 
 			</div>
 
-		</div>
+		<!--</div>-->
 	</nav>
 
-
-	<h3>Welcome, <span th:text="${linkedInProfile.firstName + ' ' + linkedInProfile.lastName}" >Some User</span>!</h3>
-	<table align="center">
+	<table align="left">
 		<tr>
 			<td>
+	<h3
+			style="color:black ">
+		<strong>
+			Welcome,<span th:text="${linkedInProfile.firstName + ' ' + linkedInProfile.lastName}" >Some User</span>!
+		</strong>
+	</h3>
 
-				<h4>These are your connections:</h4>
+				<p class="text-capitalize">
+					<em>
+						<h3
+								style="color: black">
+							<strong>
+								<em>
+								These are your connections:
+								</em>
+							</strong>
+						</h3>
+						</em>
+					    </p>
+
 
 				<ul>
-					<li th:each="con:${connections}" th:text="${con.firstName + ' ' + con.lastName}">Connection</li>
+					<li
+							style="color:black"
+							th:each="con:${connections}" th:text="${con.firstName + ' ' + con.lastName}">Connection>
+					</li>
 				</ul>
 
 			</td>
 			<td>
-				<h4>These are your Skills :</h4>
+				<h4
+						style="color:black">
+					  These are your Skills :
+				</h4>
 				<ul>
-				<li th:each="skill:${Skills}" th:text="${skill}">Skills</li>
+				<li
+						style="color:black"
+						th:each="skill:${Skills}" th:text="${skill}">Skills>
+				</li>
 				</ul>
 
 			</td>
