@@ -66,6 +66,7 @@ public class LinkedInController {
     	
 		ArrayList<Technology> items = technologies.getItems();
 		technologyRepository.save(items);
+		System.out.println("Hi");
 		//model.addAttribute("technologies", items);
 		//return "technologies";
 	}
