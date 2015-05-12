@@ -26,6 +26,30 @@
         }
         .margin-right-10 {
             margin-right: 30px;
+<<<<<<< HEAD
+        }
+        .margin-left-10{
+            margin-left: 10px;
+        }
+        .color{
+            background-color: #000000;
+        }
+        body {background-color:white}
+        h3 {color:black}
+        h4 {color:black}
+        h1 {color:black}
+
+    </style>
+    <style>
+        p.serif {
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        p.sansserif{
+            font-family: Arial, Helvetica, sans-serif;
+
+=======
+>>>>>>> origin/master
         }
         .margin-left-10{
             margin-left: 10px;
@@ -84,14 +108,29 @@
     <!--</div>-->
 </nav>
 <p class="text-capitalize">
+<<<<<<< HEAD
+    <p class="serif">
+    <em>
+        <h3
+=======
     <em>
         <h1
+>>>>>>> origin/master
                 style="color: black">
             <strong>
                 <em>
                     These are the courses related to your skills
                 </em>
             </strong>
+<<<<<<< HEAD
+        </h3>
+    </em>
+    </p>
+</p>
+<table align="center">
+
+    <p class="serif">
+=======
         </h1>
     </em>
 </p>
@@ -99,23 +138,22 @@
 <table>
     <tr>
          <td>
+>>>>>>> origin/master
              <ul>
                  <li
                          style="color:black"
                          th:each="courses:${courses}" th:text="${courses}">Course</li>
              </ul>
-
-         </td>
-
-        <td>
+    </p>
+    <p class="serif">
             <ul>
                 <li
                         style="color:black"
                         th:each="name:${name}" th:text="${name}">Course Name on Coursera</li>
             </ul>
+    </p>
 
-        </td>
-    </tr>
+
 </table>
 
 </body>

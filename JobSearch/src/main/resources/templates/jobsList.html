@@ -37,8 +37,16 @@
         h4 {color:black}
 
     </style>
+    <style>
+        p.serif {
+            font-family: "Times New Roman", Times, serif;
+        }
 
+        p.sansserif{
+            font-family: Arial, Helvetica, sans-serif;
 
+        }
+    </style>
 </head>
 <body
         style="background-color:white">
@@ -105,7 +113,39 @@
                 </em>
             </p>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
+
+
+<table align="left">
+    <tr>
+        <td>
+            <h2
+                    style="color:black">
+                <strong>
+                    <p class="serif">
+                    Hello, <span th:text="${linkedInProfile.firstName + ' ' + linkedInProfile.lastName}">Some User</span>!
+                    </p>
+                    </strong>
+            </h2>
+            <p class="text-capitalize">
+                <em>
+                    <h4
+                            style="color: black">
+                        <strong>
+                            <p class="serif"
+                            <em>
+                                These are your connections:
+                            </em>
+                            </p>
+                        </strong>
+                    </h4>
+                </em>
+            </p>
+
+<p class="serif">
 <ul>
     <li
             style="color:black"
@@ -113,6 +153,10 @@
     </li>
 
 </ul>
+<<<<<<< HEAD
+            </p>
+=======
+>>>>>>> origin/master
 </td>
     </tr>
     </table>

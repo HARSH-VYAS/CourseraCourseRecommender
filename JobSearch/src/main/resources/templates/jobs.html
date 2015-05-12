@@ -52,7 +52,16 @@
         h3 {color:black}
         h4 {color:black}
     </style>
+    <style>
+        p.serif {
+            font-family: "Times New Roman", Times, serif;
+        }
 
+        p.sansserif{
+            font-family: Arial, Helvetica, sans-serif;
+
+        }
+    </style>
 </head>
 <body
         style="background-color:white">
@@ -94,6 +103,53 @@
         </div>
 
     </div>
+<<<<<<< HEAD
+
+</nav>
+<table allign="left">
+    <tr>
+        <td>
+            <h1
+                    style="color:black ">
+                <strong>
+                    <em>
+                        <p class="text-left">   Hello, <span th:text="${linkedInProfile.firstName + ' ' + linkedInProfile.lastName}">Some User</span>!</p>
+                    </em>
+                </strong>
+            </h1>
+            <p class="text-capitalize">
+                <p class="serif">
+                <em>
+                    <h3
+                            style="color: black">
+                        <strong>
+                            <em>
+                                These are your companies:
+                            </em>
+                        </strong>
+                    </h3>
+                </em>
+            </p>
+            </p>
+            </td>
+        </tr>
+    </table>
+            <table align="center">
+                <tr>
+                    <td>
+                        <p class="serif">
+            <ul>
+                <li
+                        style="color: black"
+                        th:each="company:${company}" th:text="${company.name +' ' + company.id } ">Companies>
+                </li>
+            </ul>
+                        </p>
+        </td>
+    </tr>
+</table>
+</body>
+=======
 
 </nav>
 <table allign="center">
@@ -139,4 +195,5 @@
 </body>
 
 
+>>>>>>> origin/master
 </html>
