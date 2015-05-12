@@ -97,7 +97,10 @@
                 Coursera Courses</h4></a>
             <a id="companyBtn" class="navbar-brand margin-right-20 color-1" href="/jobs"><h4 style="color: #FFFFFF">Show
             Companies</h4></a>
-
+	    
+	  <a id="QuoraBtn" class="navbar-brand margin-right-10 color-1" ng-click="onQuoraInterestReceived()" href=""><h4
+                    style="color: #FFFFFF">Quora Interest Courses</h4></a>
+	    
 
         </div>
 
@@ -166,7 +169,16 @@
 
                     <em>{{course}}</em>
                 </li>
+		<li
+                        style="color: black" ng-repeat="title in quoralist ">
+
+                    <pre><em>{{title}}</em></pre>
+
+                </li>
+
+		
             </ul>
+	    
         </td>
 
 

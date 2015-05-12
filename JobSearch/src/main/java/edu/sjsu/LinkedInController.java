@@ -1,9 +1,5 @@
 package edu.sjsu;
 
-import java.util.HashMap;
-import java.util.List;
-
-import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,12 +12,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import javax.inject.Inject;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 @Repository
 @Controller
@@ -29,7 +26,11 @@ public class LinkedInController {
 
     @Autowired
     CourseRepository courseRepository;
-    
+
+    @Autowired
+    QuoraRepository quoraRepository;
+
+
     @Autowired
     TechnologyRepository technologyRepository;
 
@@ -57,32 +58,85 @@ public class LinkedInController {
 
         return "hello";
     }
-    
+
     @RequestMapping(value = "/technologies", method = RequestMethod.POST)
-	public void technologies(@RequestBody Technologies technologies, Model model) throws RestClientException {
+	public String technologies(@RequestBody Technologies technologies, Model model) throws RestClientException {
     	if (connectionRepository.findPrimaryConnection(LinkedIn.class) == null) {
-           // return "redirect:/connect/linkedin";
+            return "redirect:/connect/linkedin";
         }
-    	
+
 		ArrayList<Technology> items = technologies.getItems();
 		technologyRepository.save(items);
-		System.out.println("Hi");
-		//model.addAttribute("technologies", items);
-		//return "technologies";
+		model.addAttribute("technologies", items);
+		return "technologies";
 	}
 
     @RequestMapping(value = "/courses",method=RequestMethod.GET)
-    public ResponseEntity courses(Model model) throws RestClientException {
-       /* if (connectionRepository.findPrimaryConnection(LinkedIn.class) == null) {
+    public String courses(Model model) throws RestClientException {
+        if (connectionRepository.findPrimaryConnection(LinkedIn.class) == null) {
             return "redirect:/connect/linkedin";
-        }*/
+        }
 
         RestTemplate restTemplate = new RestTemplate();
         Courses courses = restTemplate.getForObject("https://api.coursera.org/api/catalog.v1/courses", Courses.class);
+
         ArrayList<Course> elements = courses.getElements();
+
         courseRepository.save(elements);
-        return new ResponseEntity(elements,HttpStatus.OK);
+        model.addAttribute("courses", elements);
+        return "courses";
     }
+
+    @RequestMapping(value = "/quora",method=RequestMethod.GET)
+    public ResponseEntity Quora(Model model) throws RestClientException {
+/*        if (connectionRepository.findPrimaryConnection(LinkedIn.class) == null) {
+            return "redirect:/connect/linkedin";
+        }
+*/
+        RestTemplate restTemplate = new RestTemplate();
+
+        QuoraContent quoraContent = restTemplate.getForObject("http://quora-api.herokuapp.com//users/Harmit-Patel-1/activity", QuoraContent.class);
+
+        HashMap<String,String > result = new HashMap<String,String>();
+        ArrayList<Quora> q = quoraContent.getActivity();
+        ArrayList<String> q1 = new ArrayList<String>();
+
+        List<Course> courses = courseRepository.findAll();
+
+
+        for (int i = 0; i <q.size() ; i++)
+        {
+
+            String id= q.get(i).getId();
+
+
+
+            String title =q.get(i).getTitle();
+
+            if(id.charAt(0)=='3')
+            {
+                System.out.println("printing titles   " + i);
+                for (int j = 0; j < courses.size(); j++)
+                {
+
+                    if(courses.get(j).getShortName().contains(title.toLowerCase()))
+                    {
+                        result.put(title,courses.get(j).getName());
+                        System.out.println("-------------------;  " + j + "``````````````````` "  +id + " " + title);
+
+                    }
+                }
+
+            }
+
+
+
+        }
+
+
+       return new ResponseEntity(result,HttpStatus.OK);
+    }
+
 
     @RequestMapping(value = "/SuggestedCourses",method=RequestMethod.GET)
     public ResponseEntity coursesMatch(Model model) {

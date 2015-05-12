@@ -7,6 +7,7 @@ var jobSearchControllers = angular.module('phonecatControllers', []);
 jobSearchControllers.controller('TechCtrl', ['$scope', '$http', function($scope, $http) {
 
 	$scope.list=[];
+	$scope.quoralist = [];
 
 	$scope.onTechBtnClick = function () {
 			$http.get('https://api.stackexchange.com/2.2/tags?site=stackoverflow&sort=popular&order=desc').
@@ -20,6 +21,14 @@ jobSearchControllers.controller('TechCtrl', ['$scope', '$http', function($scope,
 		$http.get('/SuggestedCourses').
 			success(function(data) {
 				$scope.list.push(data);
+			});
+	};
+
+
+	$scope.onQuoraInterestReceived = function () {
+		$http.get('/quora').
+			success(function(data) {
+				$scope.quoralist.push(data);
 			});
 	};
 
