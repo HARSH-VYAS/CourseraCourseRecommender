@@ -56,25 +56,13 @@ public class LinkedInController {
     }
 
     @RequestMapping(value ="/technologies", method = RequestMethod.POST)
-	public void technologies(@RequestBody Technologies technologies, Model model)throws RestClientException {
-    	if (connectionRepository.findPrimaryConnection(LinkedIn.class) == null) {
-           // return "redirect:/connect/linkedin";
-        }
-
+	public void technologies(@RequestBody Technologies technologies, Model model)throws RestClientException {    	
 		ArrayList<Technology> items = technologies.getItems();
 		technologyRepository.save(items);
-		//model.addAttribute("technologies", items);
-	//	return "technologies";
 	}
 
     @RequestMapping(value ="/courses",method=RequestMethod.POST)
-    public void courses(@RequestBody Courses courses,Model model) throws RestClientException {
-       /* if (connectionRepository.findPrimaryConnection(LinkedIn.class) == null) {
-            return "redirect:/connect/linkedin";
-        }*/
-
-      //  RestTemplate restTemplate = new RestTemplate();
-       // Courses courses = restTemplate.getForObject("https://api.coursera.org/api/catalog.v1/courses", Courses.class);
+    public void courses(@RequestBody Courses courses,Model model) throws RestClientException {      
         ArrayList<Course> elements = courses.getElements();
         ArrayList<String> courseList = new ArrayList<String>();
 
@@ -83,15 +71,10 @@ public class LinkedInController {
         for (int i = 0; i <elements.size() ; i++) {
             courseList.add(elements.get(i).getName());
         }
-       // return new ResponseEntity(courseList,HttpStatus.OK);
     }
 
     @RequestMapping(value ="/quora",method=RequestMethod.GET)
     public ResponseEntity Quora(Model model) throws RestClientException {
-/*        if (connectionRepository.findPrimaryConnection(LinkedIn.class) == null) {
-            return "redirect:/connect/linkedin";
-        }
-*/
         RestTemplate restTemplate = new RestTemplate();
 
         QuoraContent quoraContent = restTemplate.getForObject("http://quora-api.herokuapp.com//users/Harmit-Patel-1/activity", QuoraContent.class);
@@ -101,37 +84,25 @@ public class LinkedInController {
         ArrayList<String> q1 = new ArrayList<String>();
 
         List<Course> courses = courseRepository.findAll();
-
-
-        for (int i = 0; i <q.size() ; i++)
-        {
+        
+        for (int i = 0; i <q.size() ; i++) {
             String id= q.get(i).getId();
             String title =q.get(i).getTitle();
-            if(id.charAt(0)=='3')
-            {
+            if(id.charAt(0)=='3') {
                 System.out.println("printing titles   " + i);
-                for (int j = 0; j < courses.size(); j++)
-                {
-
-                    if(courses.get(j).getShortName().contains(title.toLowerCase()))
-                    {
+                for (int j = 0; j < courses.size(); j++) {
+                    if(courses.get(j).getShortName().contains(title.toLowerCase())) {
                         result.put(title,courses.get(j).getName());
                         System.out.println("-------------------;  " + j + "``````````````````` "  +id + " " + title);
-
                     }
                 }
             }
         }
-
-       return new ResponseEntity(result,HttpStatus.OK);
+        return new ResponseEntity(result, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/SuggestedCourses",method=RequestMethod.GET)
-    public ResponseEntity coursesMatch(Model model) {
-   /*     if (connectionRepository.findPrimaryConnection(LinkedIn.class) == null) {
-            return "redirect:/connect/linkedin";
-        }*/
-
+    @RequestMapping(value = "/suggestedCourses",method=RequestMethod.GET)
+    public ResponseEntity coursesMatch(Model model) {  
         HashMap<String,String> suggestedCourses = new HashMap<String, String>();
 
         List<Technology> elements = technologyRepository.findAll();

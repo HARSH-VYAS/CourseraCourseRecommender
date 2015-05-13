@@ -5,10 +5,6 @@
 var jobSearchControllers = angular.module('phonecatControllers', []);
 
 jobSearchControllers.controller('TechCtrl', ['$scope','$http',function($scope, $http) {
-
-	$scope.suggestedCourses=[];
-	$scope.quoraCourses = [];
-
 	$scope.onCourseraCoursesClick = function () {
 		$http.get('https://api.coursera.org/api/catalog.v1/courses').
 			success(function(data) {
@@ -34,12 +30,13 @@ jobSearchControllers.controller('TechCtrl', ['$scope','$http',function($scope, $
 	};
 	
 	$scope.onSuggestedCoursesClick = function () {
-		$http.get('/SuggestedCourses').
+		$http.get('/suggestedCourses').
 			success(function(data) {
 				$scope.showTechnologies = false;
 				$scope.showCourseraCourses = false;
 				$scope.showSuggestedCourses = true;
 				$scope.showQuoraCourses = false;
+				$scope.suggestedCourses = [];
 				$scope.suggestedCourses.push(data);
 			});
 	};
@@ -51,6 +48,7 @@ jobSearchControllers.controller('TechCtrl', ['$scope','$http',function($scope, $
 				$scope.showCourseraCourses = false;
 				$scope.showSuggestedCourses = false;
 				$scope.showQuoraCourses = true;
+				$scope.quoraCourses = [];
 				$scope.quoraCourses.push(data);
 			});
 	};
