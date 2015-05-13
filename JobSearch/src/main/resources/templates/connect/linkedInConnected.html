@@ -117,8 +117,7 @@
 
 
 </nav>
-<table
-        allign="center">
+<table allign="center">
 
     <tr>
         <td>
@@ -149,6 +148,8 @@
             </ul>
         </td>
 
+        </tr>
+    <tr>
         <td>
             <ul>
                 <li style="color: black" ng-repeat="course in list">
@@ -157,6 +158,8 @@
                 </li>
 		 </ul>
         </td>
+    </tr>
+    <tr>
         <td>
             <ul>
 		           <li style="color: black" ng-repeat="title in quoralist ">
@@ -167,25 +170,17 @@
 
             </ul>
         </td>
+    </tr>
+    <tr>
         <td>
-        <ul>
+                <ul>
                 <li style="color: black" ng-repeat="courses in courseracourses ">
-
-                  <pre>  <em>{{courses.shortName + ' (' + courses.name + ')'}}</em> </pre>
-
-
+                    <em>{{courses.shortName + ' (' + courses.name + ')'}}</em>
                 </li>
-
             </ul>
-
-
         </td>
-
-
-
     </tr>
 </table>
-
 
 </body>
 </html>

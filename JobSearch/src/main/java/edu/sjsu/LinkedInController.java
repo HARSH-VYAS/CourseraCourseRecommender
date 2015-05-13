@@ -56,15 +56,15 @@ public class LinkedInController {
     }
 
     @RequestMapping(value ="/technologies", method = RequestMethod.POST)
-	public String technologies(@RequestBody Technologies technologies, Model model)throws RestClientException {
+	public void technologies(@RequestBody Technologies technologies, Model model)throws RestClientException {
     	if (connectionRepository.findPrimaryConnection(LinkedIn.class) == null) {
-            return "redirect:/connect/linkedin";
+           // return "redirect:/connect/linkedin";
         }
 
 		ArrayList<Technology> items = technologies.getItems();
 		technologyRepository.save(items);
 		//model.addAttribute("technologies", items);
-		return "technologies";
+	//	return "technologies";
 	}
 
     @RequestMapping(value ="/courses",method=RequestMethod.POST)
@@ -87,7 +87,7 @@ public class LinkedInController {
        // return new ResponseEntity(courseList,HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/quora",method=RequestMethod.GET)
+    @RequestMapping(value ="/quora",method=RequestMethod.GET)
     public ResponseEntity Quora(Model model) throws RestClientException {
 /*        if (connectionRepository.findPrimaryConnection(LinkedIn.class) == null) {
             return "redirect:/connect/linkedin";

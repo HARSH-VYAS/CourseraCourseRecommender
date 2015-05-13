@@ -4,7 +4,7 @@
 
 var jobSearchControllers = angular.module('phonecatControllers', []);
 
-jobSearchControllers.controller('TechCtrl', ['$scope', '$http', function($scope, $http) {
+jobSearchControllers.controller('TechCtrl', ['$scope','$http',function($scope, $http) {
 
 	$scope.list=[];
 	$scope.quoralist = [];
@@ -14,8 +14,7 @@ jobSearchControllers.controller('TechCtrl', ['$scope', '$http', function($scope,
 		$http.get('https://api.coursera.org/api/catalog.v1/courses').
 			success(function(data) {
 				$scope.courseracourses = data.elements;
-				$http.post('/courses', data);
-
+				$http.post('/courses',data);
 			});
 	};
 
@@ -23,7 +22,7 @@ jobSearchControllers.controller('TechCtrl', ['$scope', '$http', function($scope,
 			$http.get('https://api.stackexchange.com/2.2/tags?site=stackoverflow&sort=popular&order=desc').
 				success(function(data) {
 					$scope.technologies = data.items;
-					$http.post('/technologies', data);
+					$http.post('/technologies',data);
 				});
 		};
 	$scope.onSugstCrcClick = function () {

@@ -25,28 +25,6 @@
         }
         .margin-right-10 {
             margin-right: 30px;
-
-        }
-        .margin-left-10{
-            margin-left: 10px;
-        }
-        .color{
-            background-color: #000000;
-        }
-        body {background-color:white}
-        h3 {color:black}
-        h4 {color:black}
-
-    </style>
-    <style>
-        p.serif {
-            font-family: "Times New Roman", Times, serif;
-        }
-
-        p.sansserif{
-            font-family: Arial, Helvetica, sans-serif;
-
-
         }
         .margin-left-10{
             margin-left: 10px;
@@ -65,6 +43,11 @@
         style="background-color:white">
 
 <nav class="navbar navbar-default">
+    <!--<div class="container">-->
+
+
+
+
     <div class="container-fluid color" >
         <div class="navbar-header">
 
@@ -97,8 +80,7 @@
 
     </div>
 
-
-
+    <!--</div>-->
 </nav>
 <table allign="center">
     <tr>
@@ -119,19 +101,17 @@
                 </em>
             </p>
 
-
             <ul>
                 <li
                         style="color:black"
                         th:each="course:${courses}" th:text="${ course.shortName +'- '+ course.name}"> Courses>
                 </li>
             </ul>
-
-            </p>
-
         </td>
 
     </tr>
 </table>
+
+
 </body>
 </html>
