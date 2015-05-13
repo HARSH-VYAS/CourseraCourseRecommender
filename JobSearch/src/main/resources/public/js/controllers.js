@@ -13,6 +13,7 @@ jobSearchControllers.controller('TechCtrl', ['$scope','$http',function($scope, $
 				$scope.showSuggestedCourses = false;
 				$scope.showInterestCourses = false;
 				$scope.courseraCourses = data.elements;
+				$scope.courseraCoursesBackup = data.elements;
 				$http.post('/courses', data);
 			});
 	};
@@ -37,6 +38,7 @@ jobSearchControllers.controller('TechCtrl', ['$scope','$http',function($scope, $
 				$scope.showSuggestedCourses = true;
 				$scope.showInterestCourses = false;
 				$scope.suggestedCourses = data;
+				$scope.myCourses = data;
 			});
 	};
 	
@@ -50,6 +52,20 @@ jobSearchControllers.controller('TechCtrl', ['$scope','$http',function($scope, $
 				$scope.quoraCourses = [];
 				$scope.quoraCourses.push(data);
 			});
+	};
+	
+	$scope.onSearchClick = function () {
+		var result = {};
+		angular.forEach($scope.suggestedCourses, function(val, key) {
+	        if (key == $scope.input || val == $scope.input) {
+	            result[key] = val;
+	        }
+	    });
+		if (!$.isEmptyObject(result)) {
+			$scope.suggestedCourses = result;
+		} else {
+			$scope.suggestedCourses = angular.copy($scope.myCourses);
+		}	
 	};
 	
 	$scope.onPopularTechnologiesClick();
