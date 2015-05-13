@@ -5,7 +5,10 @@
 var jobSearchControllers = angular.module('phonecatControllers', []);
 
 jobSearchControllers.controller('TechCtrl', ['$scope','$http',function($scope, $http) {
+
 	$scope.onCourseraCoursesClick = function () {
+
+
 		$http.get('https://api.coursera.org/api/catalog.v1/courses').
 			success(function(data) {
 				$scope.showTechnologies = false;
@@ -15,6 +18,7 @@ jobSearchControllers.controller('TechCtrl', ['$scope','$http',function($scope, $
 				$scope.courseraCourses = data.elements;
 				$scope.courseraCoursesBackup = data.elements;
 				$http.post('/courses', data);
+				$scope.cuurentPage="coursera";
 			});
 	};
 
@@ -27,6 +31,7 @@ jobSearchControllers.controller('TechCtrl', ['$scope','$http',function($scope, $
 				$scope.showInterestCourses = false;
 				$scope.technologies = data.items;
 				$http.post('/technologies', data);
+				$scope.cuurentPage="technology";
 			});
 	};
 	
@@ -39,6 +44,7 @@ jobSearchControllers.controller('TechCtrl', ['$scope','$http',function($scope, $
 				$scope.showInterestCourses = false;
 				$scope.suggestedCourses = data;
 				$scope.myCourses = data;
+				$scope.cuurentPage="suggestedcourses";
 			});
 	};
 	
@@ -51,11 +57,79 @@ jobSearchControllers.controller('TechCtrl', ['$scope','$http',function($scope, $
 				$scope.showInterestCourses = true;
 				$scope.quoraCourses = [];
 				$scope.quoraCourses.push(data);
+				$scope.cuurentPage="interests";
 			});
 	};
 	
 	$scope.onSearchClick = function () {
-		var result = {};
+		if($scope.cuurentPage=="coursera")
+		{
+			var result=[];
+			angular.forEach($scope.courseraCourses, function(course) {
+
+				if ($scope.input.indexOf(course.shortName)!=-1 || $scope.input.indexOf(course.name)!=-1) {
+
+					result.push(course);
+
+				}
+				$scope.courseraCourses=result;
+			});
+			if (!$.isEmptyObject(result)) {
+				$scope.courseraCourses=result;
+			} else {
+				$scope.courseraCourses = angular.copy($scope.courseraCoursesBackup);
+			}
+
+		}
+		else if($scope.cuurentPage=="technology"){
+
+			angular.forEach($scope.suggestedCourses, function(val, key) {
+				if (key == $scope.input || val == $scope.input) {
+					result[key] = val;
+				}
+			});
+		if (!$.isEmptyObject(result)) {
+			$scope.suggestedCourses = result;
+		} else {
+			$scope.suggestedCourses = angular.copy($scope.myCourses);
+		}
+		}
+
+		else if($scope.cuurentPage=="interests"){
+
+			angular.forEach($scope.suggestedCourses, function(val, key) {
+				if (key == $scope.input || val == $scope.input) {
+					result[key] = val;
+				}
+			});
+			if (!$.isEmptyObject(result)) {
+				$scope.suggestedCourses = result;
+			} else {
+				$scope.suggestedCourses = angular.copy($scope.myCourses);
+			}
+
+
+		}
+
+		else if($scope.cuurentPage=="suggestedcourses"){
+			angular.forEach($scope.suggestedCourses, function(val, key) {
+				var result = {};
+					if (key == $scope.input || val == $scope.input) {
+					result[key] = val;
+				}
+			});
+			if (!$.isEmptyObject(result)) {
+				$scope.suggestedCourses = result;
+			} else {
+				$scope.suggestedCourses = angular.copy($scope.myCourses);
+			}
+
+		}
+
+		else{
+
+		}
+
 		angular.forEach($scope.suggestedCourses, function(val, key) {
 	        if (key == $scope.input || val == $scope.input) {
 	            result[key] = val;

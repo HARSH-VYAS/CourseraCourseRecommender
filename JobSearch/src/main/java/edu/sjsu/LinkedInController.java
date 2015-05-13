@@ -18,6 +18,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+
+
+
+
 @Repository
 @Controller
 public class LinkedInController {
@@ -150,4 +161,14 @@ public class LinkedInController {
 
         return "jobsList";
     }
+
+    @Scheduled(fixedRate = 5000)
+    public void sendMail(){
+
+
+
+
+    }
+
+
 }
