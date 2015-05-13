@@ -62,7 +62,7 @@ public class LinkedInController {
 	}
 
     @RequestMapping(value ="/courses",method=RequestMethod.POST)
-    public void courses(@RequestBody Courses courses,Model model) throws RestClientException {      
+    public void courses(@RequestBody Courses courses) throws RestClientException {      
         ArrayList<Course> elements = courses.getElements();
         ArrayList<String> courseList = new ArrayList<String>();
 
@@ -73,8 +73,8 @@ public class LinkedInController {
         }
     }
 
-    @RequestMapping(value ="/quora",method=RequestMethod.GET)
-    public ResponseEntity Quora(Model model) throws RestClientException {
+    @RequestMapping(value ="/interestCourses",method=RequestMethod.POST)
+    public ResponseEntity Quora(@RequestBody Courses interests) throws RestClientException {
         RestTemplate restTemplate = new RestTemplate();
 
         QuoraContent quoraContent = restTemplate.getForObject("http://quora-api.herokuapp.com//users/Harmit-Patel-1/activity", QuoraContent.class);

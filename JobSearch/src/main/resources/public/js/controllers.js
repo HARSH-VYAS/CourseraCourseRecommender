@@ -11,7 +11,7 @@ jobSearchControllers.controller('TechCtrl', ['$scope','$http',function($scope, $
 				$scope.showTechnologies = false;
 				$scope.showCourseraCourses = true;
 				$scope.showSuggestedCourses = false;
-				$scope.showQuoraCourses = false;
+				$scope.showInterestCourses = false;
 				$scope.courseraCourses = data.elements;
 				$http.post('/courses', data);
 			});
@@ -23,7 +23,7 @@ jobSearchControllers.controller('TechCtrl', ['$scope','$http',function($scope, $
 				$scope.showTechnologies = true;
 				$scope.showCourseraCourses = false;
 				$scope.showSuggestedCourses = false;
-				$scope.showQuoraCourses = false;
+				$scope.showInterestCourses = false;
 				$scope.technologies = data.items;
 				$http.post('/technologies', data);
 			});
@@ -35,18 +35,18 @@ jobSearchControllers.controller('TechCtrl', ['$scope','$http',function($scope, $
 				$scope.showTechnologies = false;
 				$scope.showCourseraCourses = false;
 				$scope.showSuggestedCourses = true;
-				$scope.showQuoraCourses = false;
+				$scope.showInterestCourses = false;
 				$scope.suggestedCourses = data;
 			});
 	};
 	
-	$scope.onQuoraCoursesClick = function () {
-		$http.get('/quora').
+	$scope.onInterestCoursesClick = function () {
+		$http.post('/interestCourses', data).
 			success(function(data) {
 				$scope.showTechnologies = false;
 				$scope.showCourseraCourses = false;
 				$scope.showSuggestedCourses = false;
-				$scope.showQuoraCourses = true;
+				$scope.showInterestCourses = true;
 				$scope.quoraCourses = [];
 				$scope.quoraCourses.push(data);
 			});

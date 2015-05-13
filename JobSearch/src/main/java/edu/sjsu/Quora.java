@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Document(collection = "QuoraInterests")
+@Document(collection = "interestCourses")
 public class Quora
 {
 

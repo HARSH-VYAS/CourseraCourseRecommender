@@ -81,9 +81,6 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <a id="connectionBtn" class="navbar-brand margin-right-10 color-1" href="/" ng-click="showForm()">
-            	<h4 style="color: #FFFFFF">Get Connections</h4>
-            </a>
             <a id="technologyBtn" class="navbar-brand margin-right-10 color-1" href="" ng-click="onPopularTechnologiesClick()">
             	<h4 style="color: #FFFFFF">Popular Technologies</h4>
             </a>
@@ -93,8 +90,8 @@
             <a id="courseBtn" class="navbar-brand margin-right-10 color-1" href="" ng-click="onCourseraCoursesClick()">
             	<h4 style="color: #FFFFFF">Coursera Courses</h4>
             </a>
-	       <a id="QuoraBtn" class="navbar-brand margin-right-10 color-1" ng-click="onQuoraCoursesClick()" href="">
-	       		<h4 style="color: #FFFFFF">Quora Interest Courses</h4>
+	       <a id="QuoraBtn" class="navbar-brand margin-right-10 color-1" ng-click="onInterestCoursesClick()" href="">
+	       		<h4 style="color: #FFFFFF">Courses of your Interest</h4>
 	       </a>
 	    </div>
 
@@ -117,7 +114,7 @@
                 <em>
                     <strong>
                         <h3>
-                            <p class="text-center">These are the Popular Technologies:</p>
+                            <p class="text-center" style="padding-left: 20px;">These are the Popular Technologies:</p>
                         </h3>
                     </strong>
                 </em>
@@ -181,7 +178,7 @@
         <td>
         	<ul>
                 <li style="color: black" ng-repeat="course in courseraCourses ">
-                    <em>  <a ng-href="https://www.coursera.org/course/{{course.shortName}}">{{course.shortName }} : {{ + course.name + ')'}}</a></em>
+                    <em><a ng-href="https://www.coursera.org/course/{{course.shortName}}">{{course.shortName }} : {{course.name}}</a></em>
                 </li>
             </ul>
         </td>
