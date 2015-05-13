@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3de59518-17b6-4059-8132-7b0f6229123b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/edu/sjsu/Courses.class" afterPath="$PROJECT_DIR$/build/classes/main/edu/sjsu/Courses.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/distributions/JobSearch.tar" afterPath="$PROJECT_DIR$/build/distributions/JobSearch.tar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/distributions/JobSearch.zip" afterPath="$PROJECT_DIR$/build/distributions/JobSearch.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/edu/sjsu/LinkedInController.class" afterPath="$PROJECT_DIR$/build/classes/main/edu/sjsu/LinkedInController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.3/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.3/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.3/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.3/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/libs/jobsearch-0.1.0.jar.original" afterPath="$PROJECT_DIR$/build/libs/jobsearch-0.1.0.jar.original" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/libs/jobsearch-0.1.0.jar" afterPath="$PROJECT_DIR$/build/libs/jobsearch-0.1.0.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.3/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/sjsu/Courses.java" afterPath="$PROJECT_DIR$/src/main/java/edu/sjsu/Courses.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/sjsu/LinkedInController.java" afterPath="$PROJECT_DIR$/src/main/java/edu/sjsu/LinkedInController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/public/js/controllers.js" afterPath="$PROJECT_DIR$/src/main/resources/public/js/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/courses.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/courses.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/connect/linkedInConnected.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/connect/linkedInConnected.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="3de59518-17b6-4059-8132-7b0f6229123b" name="Default" comment="" />
     <ignored path="JobSearch.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -1199,15 +1182,15 @@
       <workItem from="1429599589652" duration="21317000" />
       <workItem from="1431150596231" duration="7300000" />
       <workItem from="1431372307637" duration="3931000" />
-      <workItem from="1431472871744" duration="9690000" />
+      <workItem from="1431472871744" duration="9896000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77789000" />
+    <option name="totallyTimeSpent" value="77995000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
