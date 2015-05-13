@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Document(collection = "technologies")
 public class Technology {
+
 	@Id
 	private String id;
 

@@ -8,6 +8,16 @@ jobSearchControllers.controller('TechCtrl', ['$scope', '$http', function($scope,
 
 	$scope.list=[];
 	$scope.quoralist = [];
+	$scope.courseList=[];
+
+	$scope.onCoursesClick = function () {
+		$http.get('https://api.coursera.org/api/catalog.v1/courses').
+			success(function(data) {
+				$scope.courseracourses = data.elements;
+				$http.post('/courses', data);
+
+			});
+	};
 
 	$scope.onTechBtnClick = function () {
 			$http.get('https://api.stackexchange.com/2.2/tags?site=stackoverflow&sort=popular&order=desc').
@@ -16,28 +26,19 @@ jobSearchControllers.controller('TechCtrl', ['$scope', '$http', function($scope,
 					$http.post('/technologies', data);
 				});
 		};
-
 	$scope.onSugstCrcClick = function () {
 		$http.get('/SuggestedCourses').
 			success(function(data) {
 				$scope.list.push(data);
 			});
 	};
-
-
 	$scope.onQuoraInterestReceived = function () {
 		$http.get('/quora').
 			success(function(data) {
 				$scope.quoralist.push(data);
 			});
 	};
-
-}
-
-
-
-
-]);
+}]);
 
 jobSearchControllers.controller('PhoneListCtrl', ['$scope', 'Phone',
 	  function($scope, Phone) {

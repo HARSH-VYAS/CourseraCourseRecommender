@@ -91,14 +91,10 @@
                     style="color: #FFFFFF">Get Connections</h4></a>
             <a id="technologyBtn" class="navbar-brand margin-right-10 color-1" href="" ng-click="onTechBtnClick()"><h4
                     style="color: #FFFFFF">Popular Technologies</h4></a>
-            <a id="SugstBtn" class="navbar-brand margin-right-10 color-1" ng-click="onSugstCrcClick()" href=""><h4
+            <a id="SugstBtn" class="navbar-brand margin-right-10 color-1" href="" ng-click="onSugstCrcClick()" ><h4
                     style="color: #FFFFFF">Suggested Courses</h4></a>
-            <a id="courseBtn" class="navbar-brand margin-right-10 color-1" href="/courses"><h4 style="color: #FFFFFF">
-                Coursera Courses</h4></a>
-            <a id="companyBtn" class="navbar-brand margin-right-20 color-1" href="/jobs"><h4 style="color: #FFFFFF">Show
-            Companies</h4></a>
-	    
-	  <a id="QuoraBtn" class="navbar-brand margin-right-10 color-1" ng-click="onQuoraInterestReceived()" href=""><h4
+            <a id="courseBtn" class="navbar-brand margin-right-10 color-1" href="" ng-click="onCoursesClick()" ><h4 style="color: #FFFFFF">Coursera Courses</h4></a>
+	       <a id="QuoraBtn" class="navbar-brand margin-right-10 color-1" ng-click="onQuoraInterestReceived()" href=""><h4
                     style="color: #FFFFFF">Quora Interest Courses</h4></a>
 	    
 
@@ -115,15 +111,10 @@
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>
         </div>
-        <!--<a id="connectionBtn" class="btn btn-default center-block margin-bottom-10 margin-top-10" href="/" ng-click="showForm()"  role="button">Get Connections</a>-->
-        <!--<a id="technologyBtn" class="btn btn-default center-block margin-bottom-10" href="/technologies" ng-click="onTechBtnClick()" role="button">Popular Technologies</a>-->
-        <!--<a id="skillsBtn" class="btn btn-default center-block margin-bottom-10" href="/skillMatch"  role="button">Suggested Courses</a>-->
-        <!--<a id="courseBtn" class="btn btn-default center-block margin-bottom-10" href="/courses"   role="button">Coursera Courses</a>-->
-        <!--<a id="companyBtn" class="btn btn-default center-block margin-bottom-10" href="/jobs"  role="button">Show Companies</a>-->
 
 
     </div>
-    <!--</div>-->
+
 
 </nav>
 <table
@@ -148,14 +139,10 @@
         </td>
     </tr>
 
-
-
-
     <tr>
         <td>
             <ul>
-                <li
-                        style="color: black" ng-repeat="technology in technologies">
+                <li style="color: black" ng-repeat="technology in technologies">
 
                     <em>{{technology.name + ' (' + technology.count + ')'}}</em>
                 </li>
@@ -164,21 +151,34 @@
 
         <td>
             <ul>
-                <li
-                        style="color: black" ng-repeat="course in list">
+                <li style="color: black" ng-repeat="course in list">
 
                     <em>{{course}}</em>
                 </li>
-		<li
-                        style="color: black" ng-repeat="title in quoralist ">
+		 </ul>
+        </td>
+        <td>
+            <ul>
+		           <li style="color: black" ng-repeat="title in quoralist ">
 
                     <pre><em>{{title}}</em></pre>
 
                 </li>
 
-		
             </ul>
-	    
+        </td>
+        <td>
+        <ul>
+                <li style="color: black" ng-repeat="courses in courseracourses ">
+
+                  <pre>  <em>{{courses.shortName + ' (' + courses.name + ')'}}</em> </pre>
+
+
+                </li>
+
+            </ul>
+
+
         </td>
 
 

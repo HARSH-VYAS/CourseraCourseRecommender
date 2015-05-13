@@ -1,6 +1,4 @@
 package edu.sjsu;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,8 +27,6 @@ public class LinkedInController {
 
     @Autowired
     QuoraRepository quoraRepository;
-
-
     @Autowired
     TechnologyRepository technologyRepository;
 
@@ -47,7 +43,7 @@ public class LinkedInController {
         this.connectionRepository = connectionRepository;
     }
 
-    @RequestMapping(value = "/",method=RequestMethod.GET)
+    @RequestMapping(value ="/",method=RequestMethod.GET)
     public String helloLinkedIn(Model model) {
         if (connectionRepository.findPrimaryConnection(LinkedIn.class) == null) {
             return "redirect:/connect/linkedin";
@@ -59,32 +55,36 @@ public class LinkedInController {
         return "hello";
     }
 
-    @RequestMapping(value = "/technologies", method = RequestMethod.POST)
-	public String technologies(@RequestBody Technologies technologies, Model model) throws RestClientException {
+    @RequestMapping(value ="/technologies", method = RequestMethod.POST)
+	public String technologies(@RequestBody Technologies technologies, Model model)throws RestClientException {
     	if (connectionRepository.findPrimaryConnection(LinkedIn.class) == null) {
             return "redirect:/connect/linkedin";
         }
 
 		ArrayList<Technology> items = technologies.getItems();
 		technologyRepository.save(items);
-		model.addAttribute("technologies", items);
+		//model.addAttribute("technologies", items);
 		return "technologies";
 	}
 
-    @RequestMapping(value = "/courses",method=RequestMethod.GET)
-    public String courses(Model model) throws RestClientException {
-        if (connectionRepository.findPrimaryConnection(LinkedIn.class) == null) {
+    @RequestMapping(value ="/courses",method=RequestMethod.POST)
+    public void courses(@RequestBody Courses courses,Model model) throws RestClientException {
+       /* if (connectionRepository.findPrimaryConnection(LinkedIn.class) == null) {
             return "redirect:/connect/linkedin";
-        }
+        }*/
 
-        RestTemplate restTemplate = new RestTemplate();
-        Courses courses = restTemplate.getForObject("https://api.coursera.org/api/catalog.v1/courses", Courses.class);
-
+      //  RestTemplate restTemplate = new RestTemplate();
+       // Courses courses = restTemplate.getForObject("https://api.coursera.org/api/catalog.v1/courses", Courses.class);
         ArrayList<Course> elements = courses.getElements();
+        ArrayList<String> courseList = new ArrayList<String>();
 
         courseRepository.save(elements);
-        model.addAttribute("courses", elements);
-        return "courses";
+
+        for (int i = 0; i <elements.size() ; i++) {
+
+            courseList.add(elements.get(i).getName());
+        }
+       // return new ResponseEntity(courseList,HttpStatus.OK);
     }
 
     @RequestMapping(value = "/quora",method=RequestMethod.GET)
@@ -106,13 +106,8 @@ public class LinkedInController {
 
         for (int i = 0; i <q.size() ; i++)
         {
-
             String id= q.get(i).getId();
-
-
-
             String title =q.get(i).getTitle();
-
             if(id.charAt(0)=='3')
             {
                 System.out.println("printing titles   " + i);
@@ -136,7 +131,6 @@ public class LinkedInController {
 
        return new ResponseEntity(result,HttpStatus.OK);
     }
-
 
     @RequestMapping(value = "/SuggestedCourses",method=RequestMethod.GET)
     public ResponseEntity coursesMatch(Model model) {
