@@ -181,7 +181,7 @@
         <td>
         	<ul>
                 <li style="color: black" ng-repeat="course in courseraCourses ">
-                    <em>{{course.shortName + ' (' + course.name + ')'}}</em>
+                    <em>  <a ng-href="https://www.coursera.org/course/{{course.shortName}}">{{course.shortName }} : {{ + course.name + ')'}}</a></em>
                 </li>
             </ul>
         </td>
