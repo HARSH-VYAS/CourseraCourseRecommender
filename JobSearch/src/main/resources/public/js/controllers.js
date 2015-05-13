@@ -100,15 +100,15 @@ jobSearchControllers.controller('TechCtrl', ['$scope','$http',function($scope, $
 			}
 		} else if($scope.currentPage=="suggestion") {
 			var result = {};
+			$scope.suggestedCourses = angular.copy($scope.myCourses);
 			angular.forEach($scope.suggestedCourses, function(val, key) {				
-					if ($scope.input.indexOf(key) != -1 || $scope.input.indexOf(val) != -1) {
+				if (key.toLowerCase().indexOf($scope.input.toLowerCase()) != -1 
+						|| val.toLowerCase().indexOf($scope.input.toLowerCase()) != -1) {
 					result[key] = val;
 				}
 			});
 			if (!$.isEmptyObject(result)) {
 				$scope.suggestedCourses = result;
-			} else {
-				$scope.suggestedCourses = angular.copy($scope.myCourses);
 			}
 		}	
 	};
