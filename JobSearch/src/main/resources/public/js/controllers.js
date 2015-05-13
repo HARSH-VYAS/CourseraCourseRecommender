@@ -36,8 +36,7 @@ jobSearchControllers.controller('TechCtrl', ['$scope','$http',function($scope, $
 				$scope.showCourseraCourses = false;
 				$scope.showSuggestedCourses = true;
 				$scope.showQuoraCourses = false;
-				$scope.suggestedCourses = [];
-				$scope.suggestedCourses.push(data);
+				$scope.suggestedCourses = data;
 			});
 	};
 	

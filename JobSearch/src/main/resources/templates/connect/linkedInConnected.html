@@ -154,8 +154,8 @@
     <tr>
        <td>
             <ul>
-                <li style="color: black" ng-repeat="course in suggestedCourses">
-                    <em>{{course}}</em>
+                <li style="color: black" ng-repeat="(key,val) in suggestedCourses">
+                    <em>{{key}}: <a ng-href="https://www.coursera.org/course/{{key}}">{{val}}</a></em>
                 </li>
 		 </ul>
        </td>
