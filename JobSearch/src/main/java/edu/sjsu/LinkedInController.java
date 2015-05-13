@@ -81,7 +81,6 @@ public class LinkedInController {
         courseRepository.save(elements);
 
         for (int i = 0; i <elements.size() ; i++) {
-
             courseList.add(elements.get(i).getName());
         }
        // return new ResponseEntity(courseList,HttpStatus.OK);
@@ -121,13 +120,8 @@ public class LinkedInController {
 
                     }
                 }
-
             }
-
-
-
         }
-
 
        return new ResponseEntity(result,HttpStatus.OK);
     }
@@ -149,26 +143,19 @@ public class LinkedInController {
             for (int j = 0; j < courses.size(); j++) {
 
                 String courseName = courses.get(j).getName().toLowerCase();
-                if (courseName.substring(0,courseName.length()).contains(elements.get(i).getName())){
-
-                    if(!course.contains(courseName))
-                    {
+                if (courseName.substring(0,courseName.length()).contains(elements.get(i).getName())) {
+                    if(!course.contains(courseName)) {
                         suggestedCourses.put(elements.get(i).getName().toLowerCase(),courseName);
                         course.add(courseName);
                     }
-
                 }
             }
-
-
-
         }
         return new ResponseEntity(suggestedCourses, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/jobs",method=RequestMethod.GET)
     public String joblistLinkedIn(Model model) {
-
         if (connectionRepository.findPrimaryConnection(LinkedIn.class) == null) {
             return "redirect:/connect/linkedin";
         }
@@ -192,6 +179,4 @@ public class LinkedInController {
 
         return "jobsList";
     }
-
-
 }

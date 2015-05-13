@@ -6,37 +6,56 @@ var jobSearchControllers = angular.module('phonecatControllers', []);
 
 jobSearchControllers.controller('TechCtrl', ['$scope','$http',function($scope, $http) {
 
-	$scope.list=[];
-	$scope.quoralist = [];
-	$scope.courseList=[];
+	$scope.suggestedCourses=[];
+	$scope.quoraCourses = [];
 
-	$scope.onCoursesClick = function () {
+	$scope.onCourseraCoursesClick = function () {
 		$http.get('https://api.coursera.org/api/catalog.v1/courses').
 			success(function(data) {
-				$scope.courseracourses = data.elements;
-				$http.post('/courses',data);
+				$scope.showTechnologies = false;
+				$scope.showCourseraCourses = true;
+				$scope.showSuggestedCourses = false;
+				$scope.showQuoraCourses = false;
+				$scope.courseraCourses = data.elements;
+				$http.post('/courses', data);
 			});
 	};
 
-	$scope.onTechBtnClick = function () {
-			$http.get('https://api.stackexchange.com/2.2/tags?site=stackoverflow&sort=popular&order=desc').
-				success(function(data) {
-					$scope.technologies = data.items;
-					$http.post('/technologies',data);
-				});
-		};
-	$scope.onSugstCrcClick = function () {
+	$scope.onPopularTechnologiesClick = function () {
+		$http.get('https://api.stackexchange.com/2.2/tags?site=stackoverflow&sort=popular&order=desc').
+			success(function(data) {
+				$scope.showTechnologies = true;
+				$scope.showCourseraCourses = false;
+				$scope.showSuggestedCourses = false;
+				$scope.showQuoraCourses = false;
+				$scope.technologies = data.items;
+				$http.post('/technologies', data);
+			});
+	};
+	
+	$scope.onSuggestedCoursesClick = function () {
 		$http.get('/SuggestedCourses').
 			success(function(data) {
-				$scope.list.push(data);
+				$scope.showTechnologies = false;
+				$scope.showCourseraCourses = false;
+				$scope.showSuggestedCourses = true;
+				$scope.showQuoraCourses = false;
+				$scope.suggestedCourses.push(data);
 			});
 	};
-	$scope.onQuoraInterestReceived = function () {
+	
+	$scope.onQuoraCoursesClick = function () {
 		$http.get('/quora').
 			success(function(data) {
-				$scope.quoralist.push(data);
+				$scope.showTechnologies = false;
+				$scope.showCourseraCourses = false;
+				$scope.showSuggestedCourses = false;
+				$scope.showQuoraCourses = true;
+				$scope.quoraCourses.push(data);
 			});
 	};
+	
+	$scope.onPopularTechnologiesClick();
 }]);
 
 jobSearchControllers.controller('PhoneListCtrl', ['$scope', 'Phone',
