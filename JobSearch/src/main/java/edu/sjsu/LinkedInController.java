@@ -14,13 +14,15 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import javax.inject.Inject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -162,13 +164,10 @@ public class LinkedInController {
         return "jobsList";
     }
 
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(fixedRate = 60000)
     public void sendMail(){
-
-
-
-
+    	String GET_URL = "http://localhost:8080/mail";
+    	Map<String, String> params = new HashMap<String, String>();    	
+    	restTemplate.getForObject(GET_URL, String.class, params);
     }
-
-
 }
