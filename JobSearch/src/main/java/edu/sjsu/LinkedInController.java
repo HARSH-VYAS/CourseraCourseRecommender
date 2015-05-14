@@ -28,9 +28,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-
-
-
 @Repository
 @Controller
 public class LinkedInController {
@@ -166,8 +163,12 @@ public class LinkedInController {
 
     @Scheduled(fixedRate = 60000)
     public void sendMail(){
-    	String GET_URL = "http://localhost:8080/mail";
-    	Map<String, String> params = new HashMap<String, String>();    	
-    	restTemplate.getForObject(GET_URL, String.class, params);
+    	int savedSize = courseRepository.findAll().size();
+    	Courses newCourses = restTemplate.getForObject("https://api.coursera.org/api/catalog.v1/courses", Courses.class);
+    	if (newCourses.getElements().size() > savedSize) {
+    		String GET_URL = "http://localhost:8080/mail";
+        	Map<String, String> params = new HashMap<String, String>();    	
+        	restTemplate.getForObject(GET_URL, String.class, params);
+    	}   	
     }
 }

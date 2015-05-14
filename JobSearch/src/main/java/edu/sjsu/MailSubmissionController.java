@@ -22,11 +22,11 @@ class MailSubmissionController {
     @ResponseStatus(HttpStatus.CREATED)
     SimpleMailMessage send() {        
         SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setTo("someone@localhost");
-        mailMessage.setReplyTo("someone@localhost");
-        mailMessage.setFrom("someone@localhost");
-        mailMessage.setSubject("Lorem ipsum");
-        mailMessage.setText("Lorem ipsum dolor sit amet [...]");
+        mailMessage.setTo("cmpe273linkedera@gmail.com");
+        mailMessage.setReplyTo("cmpe273linkedera@gmail.com");
+        mailMessage.setFrom("cmpe273linkedera@gmail.com");
+        mailMessage.setSubject("Course Addition");
+        mailMessage.setText("2 new courses got added.");
         javaMailSender.send(mailMessage);
         return mailMessage;
     }

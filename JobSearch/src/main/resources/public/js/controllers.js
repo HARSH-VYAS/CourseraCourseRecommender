@@ -7,8 +7,6 @@ var jobSearchControllers = angular.module('phonecatControllers', []);
 jobSearchControllers.controller('TechCtrl', ['$scope','$http',function($scope, $http) {
 
 	$scope.onCourseraCoursesClick = function () {
-
-
 		$http.get('https://api.coursera.org/api/catalog.v1/courses').
 			success(function(data) {
 				$scope.showTechnologies = false;
