@@ -47,16 +47,25 @@ jobSearchControllers.controller('TechCtrl', ['$scope','$http',function($scope, $
 	};
 	
 	$scope.onInterestCoursesClick = function () {
-		$http.post('/interestCourses', data).
+		$http.get('/interestCourses').
 			success(function(data) {
 				$scope.showTechnologies = false;
 				$scope.showCourseraCourses = false;
 				$scope.showSuggestedCourses = false;
 				$scope.showInterestCourses = true;
-				$scope.quoraCourses = [];
-				$scope.quoraCourses.push(data);
+				$scope.quoraCourses = data;
 				$scope.currentPage="interest";
 			});
+	};
+	
+	$scope.suggetedInterestCourses= function() {
+		var id = Math.floor((Math.random() * 100) + 1); 
+		var myInterest = angular.element('#myInterest')[0].value;
+		var interests = {"items" : [{id:id, name:myInterest}]};
+		$http.post('/saveInterest', interests).
+		success(function(data) {
+			$scope.myInterests = data;
+		});
 	};
 	
 	$scope.onSearchClick = function () {

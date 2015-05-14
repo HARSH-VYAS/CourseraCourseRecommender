@@ -130,7 +130,19 @@
                 </li>
             </ul>
         </td>
+		 <td>            
+         	Please add your interests here <input type="text" ng-model="myInterest" id="myInterest"/>
+            <input type="button" value="submit" ng-click="suggetedInterestCourses()"/>
 
+        </td>
+        <!-- <td>
+        	<div ng-if="myInterests.length>1">Your Interests below:</div>
+            <ul>
+                <li style="color: black" ng-repeat="interest in myInterests">
+                    <em>{{interest.name}}</em>
+                </li>
+            </ul>
+        </td> -->       
     </tr>        
 </table>
 
@@ -185,15 +197,14 @@
     </tr>
 </table>
 
-<table allign="center" ng-if="showQuoraCourses">
+<table allign="center" ng-if="showInterestCourses">	
     <tr>
         <td>
             <p class="text-capitalize">
-
                 <em>
                     <strong>
                         <h3>
-                            <p class="text-center">These are the Quora Courses:</p>
+                            <p class="text-center">These are the Courses of your interest:</p>
                         </h3>
                     </strong>
                 </em>
@@ -203,8 +214,8 @@
     <tr>
         <td>
             <ul>
-          		<li style="color: black" ng-repeat="title in quoraList ">
-                    <pre><em>{{title}}</em></pre>
+          		<li style="color: black" ng-repeat="course in quoraCourses ">
+                    <em><a ng-href="https://www.coursera.org/course/{{course.shortName}}">{{course.shortName }} : {{course.name}}</a></em>
                 </li>
             </ul>
         </td>

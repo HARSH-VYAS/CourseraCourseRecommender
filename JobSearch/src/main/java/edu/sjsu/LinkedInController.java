@@ -39,6 +39,8 @@ public class LinkedInController {
     QuoraRepository quoraRepository;
     @Autowired
     TechnologyRepository technologyRepository;
+    @Autowired
+    InterestRepository interestRepository;
 
     private LinkedIn linkedIn;
 
@@ -76,38 +78,35 @@ public class LinkedInController {
         ArrayList<Course> elements = courses.getElements();
         ArrayList<String> courseList = new ArrayList<String>();
 
-        courseRepository.save(elements);
+        //courseRepository.save(elements);
 
         for (int i = 0; i <elements.size() ; i++) {
             courseList.add(elements.get(i).getName());
         }
     }
 
-    @RequestMapping(value ="/interestCourses",method=RequestMethod.POST)
-    public ResponseEntity Quora(@RequestBody Courses interests) throws RestClientException {
+    @RequestMapping(value ="/interestCourses",method=RequestMethod.GET)
+    public ResponseEntity getInterests() throws RestClientException {
         RestTemplate restTemplate = new RestTemplate();
+        
+        List<Interest> savedInterests = interestRepository.findAll();
 
-        QuoraContent quoraContent = restTemplate.getForObject("http://quora-api.herokuapp.com//users/Harmit-Patel-1/activity", QuoraContent.class);
+        /*QuoraContent quoraContent = restTemplate.getForObject("http://quora-api.herokuapp.com//users/Harmit-Patel-1/activity", QuoraContent.class);
 
         HashMap<String,String > result = new HashMap<String,String>();
         ArrayList<Quora> q = quoraContent.getActivity();
-        ArrayList<String> q1 = new ArrayList<String>();
+        ArrayList<String> q1 = new ArrayList<String>();*/
 
         List<Course> courses = courseRepository.findAll();
+        ArrayList<Course > result = new ArrayList<Course>();
         
-        for (int i = 0; i <q.size() ; i++) {
-            String id= q.get(i).getId();
-            String title =q.get(i).getTitle();
-            if(id.charAt(0)=='3') {
-                System.out.println("printing titles   " + i);
+        for (int i = 0; i < savedInterests.size(); i++) {
                 for (int j = 0; j < courses.size(); j++) {
-                    if(courses.get(j).getShortName().contains(title.toLowerCase())) {
-                        result.put(title,courses.get(j).getName());
-                        System.out.println("-------------------;  " + j + "``````````````````` "  +id + " " + title);
+                    if(courses.get(j).getShortName().contains(savedInterests.get(i).getName().toLowerCase())) {
+                        result.add(courses.get(j));
                     }
                 }
-            }
-        }
+        }    
         return new ResponseEntity(result, HttpStatus.OK);
     }
 
@@ -159,6 +158,12 @@ public class LinkedInController {
         model.addAttribute(linkedIn.profileOperations().getUserProfile());
 
         return "jobsList";
+    }
+    
+    @RequestMapping(value ="/saveInterest",method=RequestMethod.POST)
+    public ResponseEntity saveInterest(@RequestBody Interests data) throws RestClientException {
+    	List<Interest> interests = interestRepository.save(data.getItems());
+    	return new ResponseEntity(interests, HttpStatus.OK);
     }
 
     @Scheduled(fixedRate = 60000)
