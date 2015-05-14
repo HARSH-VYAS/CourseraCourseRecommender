@@ -2,6 +2,7 @@ package edu.sjsu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.linkedin.api.*;
 import org.springframework.stereotype.Controller;
@@ -14,19 +15,10 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import javax.inject.Inject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 @Repository
 @Controller
@@ -46,14 +38,23 @@ public class LinkedInController {
 
     private ConnectionRepository connectionRepository;
     RestTemplate restTemplate = new RestTemplate();
+    int currentSize;
+    public String m_QuoraStr;
+    public static String m_ToUser;
+    public static String m_Username;
 
 
 
     @Inject
-    public LinkedInController(LinkedIn linkedIn, ConnectionRepository connectionRepository) {
+    public LinkedInController(LinkedIn linkedIn, ConnectionRepository connectionRepository)
+    {
+
         this.linkedIn = linkedIn;
         this.connectionRepository = connectionRepository;
+
     }
+
+
 
     @RequestMapping(value ="/",method=RequestMethod.GET)
     public String helloLinkedIn(Model model) {
@@ -103,7 +104,9 @@ public class LinkedInController {
         }    
         return new ResponseEntity(result, HttpStatus.OK);
     }
-    
+
+    //here is the logic for fetching quora interests
+public boolean m_isadded;
     @RequestMapping(value ="/quoraCourses",method=RequestMethod.GET)
     public ResponseEntity getQuoraCourses() throws RestClientException {
     	RestTemplate restTemplate = new RestTemplate();
@@ -112,17 +115,28 @@ public class LinkedInController {
 
         HashMap<String,String > result = new HashMap<String,String>();
         ArrayList<Quora> q = quoraContent.getActivity();
-        ArrayList<String> q1 = new ArrayList<String>();
+        //ArrayList<String> q1 = new ArrayList<String>();
+        m_ToUser = linkedIn.profileOperations().getUserProfile().getEmailAddress() ;
+        m_Username =  linkedIn.profileOperations().getUserProfile().getFirstName();
 
         List<Course> courses = courseRepository.findAll();
-
+        currentSize = q.size();
         for (int i = 0; i <q.size() ; i++) {
             String id= q.get(i).getId();
             String title =q.get(i).getTitle();
-            if(id.charAt(0)=='3') {
+            if(id.charAt(0)=='3')
+            {
+                if(q.size() > currentSize)
+                {
+                    m_isadded = true;
+                    System.out.println("NEW NEW NEW NEW NEW");
+                    m_QuoraStr = "New interests have been added";
+                }
                 System.out.println("printing titles   " + i);
-                for (int j = 0; j < courses.size(); j++) {
-                    if(courses.get(j).getShortName().contains(title.toLowerCase())) {
+                for (int j = 0; j < courses.size(); j++)
+                {
+                    if(courses.get(j).getShortName().contains(title.toLowerCase()))
+                    {
                         result.put(title,courses.get(j).getName());
                         System.out.println("-------------------;  " + j + "``````````````````` "  +id + " " + title);
                     }
@@ -192,11 +206,20 @@ public class LinkedInController {
     @Scheduled(fixedRate = 60000)
     public void sendMail(){
     	int savedSize = courseRepository.findAll().size();
+
     	Courses newCourses = restTemplate.getForObject("https://api.coursera.org/api/catalog.v1/courses", Courses.class);
     	if (newCourses.getElements().size() > savedSize) {
     		String GET_URL = "http://localhost:8080/mail";
-        	Map<String, String> params = new HashMap<String, String>();    	
+        	Map<String, String> params = new HashMap<String, String>();
         	restTemplate.getForObject(GET_URL, String.class, params);
-    	}   	
+    	}
+
+        if(m_isadded)
+        {
+            String GET_URL = "http://localhost:8080/mail";
+            Map<String, String> params = new HashMap<String, String>();
+            restTemplate.getForObject(GET_URL, String.class, params);
+            m_isadded = false;
+        }
     }
 }

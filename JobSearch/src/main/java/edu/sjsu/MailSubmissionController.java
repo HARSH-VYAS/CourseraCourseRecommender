@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 class MailSubmissionController {
 
     private final JavaMailSender javaMailSender;
-
     @Autowired
-    MailSubmissionController(JavaMailSender javaMailSender) {
+    MailSubmissionController(JavaMailSender javaMailSender)
+    {
         this.javaMailSender = javaMailSender;
     }
 
@@ -22,11 +22,11 @@ class MailSubmissionController {
     @ResponseStatus(HttpStatus.CREATED)
     SimpleMailMessage send() {        
         SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setTo("cmpe273linkedera@gmail.com");
-        mailMessage.setReplyTo("cmpe273linkedera@gmail.com");
+        mailMessage.setTo(LinkedInController.m_ToUser);
+        mailMessage.setReplyTo(LinkedInController.m_ToUser);
         mailMessage.setFrom("cmpe273linkedera@gmail.com");
-        mailMessage.setSubject("Course Addition");
-        mailMessage.setText("2 new courses got added.");
+        mailMessage.setSubject("New Course added in Coursera");
+        mailMessage.setText("Hello " + LinkedInController.m_Username + ". New courses have been added. The names of the course(s) are " );
         javaMailSender.send(mailMessage);
         return mailMessage;
     }
