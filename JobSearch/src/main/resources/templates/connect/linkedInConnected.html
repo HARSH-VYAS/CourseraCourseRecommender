@@ -90,8 +90,11 @@
             <a id="courseBtn" class="navbar-brand margin-right-10 color-1" href="" ng-click="onCourseraCoursesClick()">
             	<h4 style="color: #FFFFFF">Coursera Courses</h4>
             </a>
-	       <a id="QuoraBtn" class="navbar-brand margin-right-10 color-1" ng-click="onInterestCoursesClick()" href="">
+	       <a id="InterestBtn" class="navbar-brand margin-right-10 color-1" ng-click="onInterestCoursesClick()" href="">
 	       		<h4 style="color: #FFFFFF">Courses of your Interest</h4>
+	       </a>
+	       <a id="QuoraBtn" class="navbar-brand margin-right-10 color-1" ng-click="onQuoraCoursesClick()" href="">
+	       		<h4 style="color: #FFFFFF">Quora Courses</h4>
 	       </a>
 	    </div>
 
@@ -214,8 +217,33 @@
     <tr>
         <td>
             <ul>
-          		<li style="color: black" ng-repeat="course in quoraCourses ">
+          		<li style="color: black" ng-repeat="course in interestCourses ">
                     <em><a ng-href="https://www.coursera.org/course/{{course.shortName}}">{{course.shortName }} : {{course.name}}</a></em>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+<table allign="center" ng-if="showQuoraCourses">	
+    <tr>
+        <td>
+            <p class="text-capitalize">
+                <em>
+                    <strong>
+                        <h3>
+                            <p class="text-center">These are the Quora Courses:</p>
+                        </h3>
+                    </strong>
+                </em>
+            </p>
+        </td>
+    </tr>    
+    <tr>
+        <td>
+            <ul>
+          		<li style="color: black" ng-repeat="(key,val) in quoraCourses">
+                    <em>{{key}}: <a ng-href="https://www.coursera.org/course/{{key}}">{{val}}</a></em>
                 </li>
             </ul>
         </td>

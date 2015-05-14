@@ -91,12 +91,6 @@ public class LinkedInController {
         
         List<Interest> savedInterests = interestRepository.findAll();
 
-        /*QuoraContent quoraContent = restTemplate.getForObject("http://quora-api.herokuapp.com//users/Harmit-Patel-1/activity", QuoraContent.class);
-
-        HashMap<String,String > result = new HashMap<String,String>();
-        ArrayList<Quora> q = quoraContent.getActivity();
-        ArrayList<String> q1 = new ArrayList<String>();*/
-
         List<Course> courses = courseRepository.findAll();
         ArrayList<Course > result = new ArrayList<Course>();
         
@@ -108,6 +102,35 @@ public class LinkedInController {
                 }
         }    
         return new ResponseEntity(result, HttpStatus.OK);
+    }
+    
+    @RequestMapping(value ="/quoraCourses",method=RequestMethod.GET)
+    public ResponseEntity getQuoraCourses() throws RestClientException {
+    	RestTemplate restTemplate = new RestTemplate();
+
+        QuoraContent quoraContent = restTemplate.getForObject("http://quora-api.herokuapp.com//users/Harmit-Patel-1/activity", QuoraContent.class);
+
+        HashMap<String,String > result = new HashMap<String,String>();
+        ArrayList<Quora> q = quoraContent.getActivity();
+        ArrayList<String> q1 = new ArrayList<String>();
+
+        List<Course> courses = courseRepository.findAll();
+
+        for (int i = 0; i <q.size() ; i++) {
+            String id= q.get(i).getId();
+            String title =q.get(i).getTitle();
+            if(id.charAt(0)=='3') {
+                System.out.println("printing titles   " + i);
+                for (int j = 0; j < courses.size(); j++) {
+                    if(courses.get(j).getShortName().contains(title.toLowerCase())) {
+                        result.put(title,courses.get(j).getName());
+                        System.out.println("-------------------;  " + j + "``````````````````` "  +id + " " + title);
+                    }
+                }
+            }
+        }
+
+       return new ResponseEntity(result,HttpStatus.OK);
     }
 
     @RequestMapping(value = "/suggestedCourses",method=RequestMethod.GET)
