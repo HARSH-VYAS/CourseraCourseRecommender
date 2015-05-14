@@ -43,18 +43,11 @@ public class LinkedInController {
     public static String m_ToUser;
     public static String m_Username;
 
-
-
     @Inject
-    public LinkedInController(LinkedIn linkedIn, ConnectionRepository connectionRepository)
-    {
-
+    public LinkedInController(LinkedIn linkedIn, ConnectionRepository connectionRepository) {
         this.linkedIn = linkedIn;
         this.connectionRepository = connectionRepository;
-
     }
-
-
 
     @RequestMapping(value ="/",method=RequestMethod.GET)
     public String helloLinkedIn(Model model) {
@@ -79,7 +72,9 @@ public class LinkedInController {
         ArrayList<Course> elements = courses.getElements();
         ArrayList<String> courseList = new ArrayList<String>();
 
-        //courseRepository.save(elements);
+        if (courseRepository.findAll().size() == 0) {
+        	courseRepository.save(elements);
+        }	
 
         for (int i = 0; i <elements.size() ; i++) {
             courseList.add(elements.get(i).getName());
@@ -106,7 +101,7 @@ public class LinkedInController {
     }
 
     //here is the logic for fetching quora interests
-public boolean m_isadded;
+    public boolean m_isadded;
     @RequestMapping(value ="/quoraCourses",method=RequestMethod.GET)
     public ResponseEntity getQuoraCourses() throws RestClientException {
     	RestTemplate restTemplate = new RestTemplate();
@@ -124,27 +119,20 @@ public boolean m_isadded;
         for (int i = 0; i <q.size() ; i++) {
             String id= q.get(i).getId();
             String title =q.get(i).getTitle();
-            if(id.charAt(0)=='3')
-            {
-                if(q.size() > currentSize)
-                {
+            if(id.charAt(0)=='3') {
+                if(q.size() > currentSize) {
                     m_isadded = true;
                     System.out.println("NEW NEW NEW NEW NEW");
                     m_QuoraStr = "New interests have been added";
                 }
-                System.out.println("printing titles   " + i);
-                for (int j = 0; j < courses.size(); j++)
-                {
-                    if(courses.get(j).getShortName().contains(title.toLowerCase()))
-                    {
+                for (int j = 0; j < courses.size(); j++) {
+                    if(courses.get(j).getShortName().contains(title.toLowerCase())) {
                         result.put(title,courses.get(j).getName());
-                        System.out.println("-------------------;  " + j + "``````````````````` "  +id + " " + title);
                     }
                 }
             }
         }
-
-       return new ResponseEntity(result,HttpStatus.OK);
+        return new ResponseEntity(result,HttpStatus.OK);
     }
 
     @RequestMapping(value = "/suggestedCourses",method=RequestMethod.GET)
@@ -199,7 +187,8 @@ public boolean m_isadded;
     
     @RequestMapping(value ="/saveInterest",method=RequestMethod.POST)
     public ResponseEntity saveInterest(@RequestBody Interests data) throws RestClientException {
-    	List<Interest> interests = interestRepository.save(data.getItems());
+    	interestRepository.save(data.getItems());
+    	List<Interest> interests = interestRepository.findAll();
     	return new ResponseEntity(interests, HttpStatus.OK);
     }
 
@@ -214,8 +203,7 @@ public boolean m_isadded;
         	restTemplate.getForObject(GET_URL, String.class, params);
     	}
 
-        if(m_isadded)
-        {
+        if(m_isadded) {
             String GET_URL = "http://localhost:8080/mail";
             Map<String, String> params = new HashMap<String, String>();
             restTemplate.getForObject(GET_URL, String.class, params);

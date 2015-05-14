@@ -30,6 +30,7 @@ jobSearchControllers.controller('TechCtrl', ['$scope','$http',function($scope, $
 				$scope.showInterestCourses = false;
 				$scope.showQuoraCourses = false;
 				$scope.technologies = data.items;
+				$scope.technologiesBackup = data.items;
 				$http.post('/technologies', data);
 				$scope.currentPage="technology";
 			});
@@ -44,7 +45,7 @@ jobSearchControllers.controller('TechCtrl', ['$scope','$http',function($scope, $
 				$scope.showInterestCourses = false;
 				$scope.showQuoraCourses = false;
 				$scope.suggestedCourses = data;
-				$scope.myCourses = data;
+				$scope.suggestedCoursesBackup = data;
 				$scope.currentPage="suggestion";
 			});
 	};
@@ -58,6 +59,7 @@ jobSearchControllers.controller('TechCtrl', ['$scope','$http',function($scope, $
 				$scope.showInterestCourses = true;
 				$scope.showQuoraCourses = false;
 				$scope.interestCourses = data;
+				$scope.interestCoursesBackup = data;
 				$scope.currentPage="interest";
 			});
 	};
@@ -71,6 +73,7 @@ jobSearchControllers.controller('TechCtrl', ['$scope','$http',function($scope, $
 				$scope.showInterestCourses = false;
 				$scope.showQuoraCourses = true;
 				$scope.quoraCourses = data;
+				$scope.quoraCoursesBackup = data;
 				$scope.currentPage="quora";
 			});
 	};
@@ -98,33 +101,32 @@ jobSearchControllers.controller('TechCtrl', ['$scope','$http',function($scope, $
 			if (!$.isEmptyObject(result)) {
 				$scope.courseraCourses = result;
 			}
-		} else if($scope.currentPage=="technology"){
-			var result = {};
-			angular.forEach($scope.suggestedCourses, function(val, key) {
-				if (key == $scope.input || val == $scope.input) {
-					result[key] = val;
+		} else if($scope.currentPage=="technology") {
+			var result = [];
+			$scope.technologies = angular.copy($scope.technologiesBackup);
+			angular.forEach($scope.technologies, function(technology) {
+				if (technology.name.toLowerCase().indexOf($scope.input.toLowerCase()) != -1) {
+					result.push(technology);
 				}
 			});
 			if (!$.isEmptyObject(result)) {
-				$scope.suggestedCourses = result;
-			} else {
-				$scope.suggestedCourses = angular.copy($scope.myCourses);
+				$scope.technologies = result;
 			}
-		} else if($scope.currentPage=="interest"){
-			var result = {};
-			angular.forEach($scope.suggestedCourses, function(val, key) {
-				if (key == $scope.input || val == $scope.input) {
-					result[key] = val;
+		} else if($scope.currentPage=="interest") {
+			var result=[];
+			$scope.interestCourses = angular.copy($scope.interestCoursesBackup);
+			angular.forEach($scope.interestCourses, function(course) {
+				if (course.shortName.toLowerCase().indexOf($scope.input.toLowerCase()) != -1 
+						|| course.name.toLowerCase().indexOf($scope.input.toLowerCase()) != -1) {
+					result.push(course);
 				}
 			});
 			if (!$.isEmptyObject(result)) {
-				$scope.suggestedCourses = result;
-			} else {
-				$scope.suggestedCourses = angular.copy($scope.myCourses);
+				$scope.interestCourses = result;
 			}
 		} else if($scope.currentPage=="suggestion") {
 			var result = {};
-			$scope.suggestedCourses = angular.copy($scope.myCourses);
+			$scope.suggestedCourses = angular.copy($scope.suggestedCoursesBackup);
 			angular.forEach($scope.suggestedCourses, function(val, key) {				
 				if (key.toLowerCase().indexOf($scope.input.toLowerCase()) != -1 
 						|| val.toLowerCase().indexOf($scope.input.toLowerCase()) != -1) {
@@ -136,15 +138,15 @@ jobSearchControllers.controller('TechCtrl', ['$scope','$http',function($scope, $
 			}
 		} else if($scope.currentPage=="quora"){
 			var result = {};
-			angular.forEach($scope.suggestedCourses, function(val, key) {
-				if (key == $scope.input || val == $scope.input) {
+			$scope.quoraCourses = angular.copy($scope.quoraCoursesBackup);
+			angular.forEach($scope.quoraCourses, function(val, key) {
+				if (key.toLowerCase().indexOf($scope.input.toLowerCase()) != -1 
+						|| val.toLowerCase().indexOf($scope.input.toLowerCase()) != -1) {
 					result[key] = val;
 				}
 			});
 			if (!$.isEmptyObject(result)) {
-				$scope.suggestedCourses = result;
-			} else {
-				$scope.suggestedCourses = angular.copy($scope.myCourses);
+				$scope.quoraCourses = result;
 			}
 		}	
 	};

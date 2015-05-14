@@ -137,15 +137,7 @@
          	Please add your interests here <input type="text" ng-model="myInterest" id="myInterest"/>
             <input type="button" value="submit" ng-click="suggetedInterestCourses()"/>
 
-        </td>
-        <!-- <td>
-        	<div ng-if="myInterests.length>1">Your Interests below:</div>
-            <ul>
-                <li style="color: black" ng-repeat="interest in myInterests">
-                    <em>{{interest.name}}</em>
-                </li>
-            </ul>
-        </td> -->       
+        </td>              
     </tr>        
 </table>
 
@@ -193,7 +185,7 @@
         <td>
         	<ul>
                 <li style="color: black" ng-repeat="course in courseraCourses ">
-                    <em><a ng-href="https://www.coursera.org/course/{{course.shortName}}">{{course.shortName }} : {{course.name}}</a></em>
+                    <em>{{course.shortName }}: <a ng-href="https://www.coursera.org/course/{{course.shortName}}">{{course.name}}</a></em>
                 </li>
             </ul>
         </td>
@@ -218,7 +210,15 @@
         <td>
             <ul>
           		<li style="color: black" ng-repeat="course in interestCourses ">
-                    <em><a ng-href="https://www.coursera.org/course/{{course.shortName}}">{{course.shortName }} : {{course.name}}</a></em>
+                    <em>{{course.shortName }} : <a ng-href="https://www.coursera.org/course/{{course.shortName}}">{{course.name}}</a></em>
+                </li>
+            </ul>
+        </td>
+        <td>
+        	<span style="padding-left:20px;" ng-if="myInterests.length>1">Your Interests below:</span>
+            <ul>
+                <li style="color: black" ng-repeat="interest in myInterests">
+                    <em>{{interest.name}}</em>
                 </li>
             </ul>
         </td>
